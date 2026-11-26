@@ -1,0 +1,1024 @@
+/**
+ * Nubem Keycloak login theme.
+ * Replicates the Marketplace native auth UI:
+ *   web-application/frontend/src/style/auth.css (layout / components)
+ *   web-application/frontend/src/style/theme.css (--auth-* and corporate tokens)
+ * Dark mode uses the PatternFly v5 class `pf-v5-theme-dark` on <html>.
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&display=swap");
+
+:root {
+    /* Corporate palette (theme.css) */
+    --nubem-brand-primary: #1c2659;
+    --nubem-brand-secondary: #5a7bae;
+    --nubem-brand-secondary-alt: #007885;
+    --nubem-brand-secondary-alt-deep: #00606b;
+    --nubem-text-muted: #6b7280;
+    --nubem-text-inverse: #ffffff;
+    --nubem-bg-surface: #f8f9fc;
+    --nubem-bg-elevated: #ffffff;
+    --nubem-neutral-light: #e5e5e5;
+    --nubem-feedback-error: #ef4444;
+
+    /* Spacing / radius / elevation (theme.css) */
+    --nubem-space-4: 4px;
+    --nubem-space-8: 8px;
+    --nubem-space-12: 12px;
+    --nubem-space-16: 16px;
+    --nubem-space-24: 24px;
+    --nubem-radius-sm: 4px;
+    --nubem-radius-md: 8px;
+    --nubem-radius-lg: 12px;
+    --nubem-elevation-1: 0 1px 3px rgba(28, 38, 89, 0.06), 0 1px 2px rgba(28, 38, 89, 0.04);
+    --nubem-elevation-2: 0 4px 6px rgba(28, 38, 89, 0.06), 0 2px 4px rgba(28, 38, 89, 0.04);
+    --nubem-elevation-3: 0 10px 15px rgba(28, 38, 89, 0.08), 0 4px 6px rgba(28, 38, 89, 0.04);
+    --nubem-elevation-4: 0 20px 25px rgba(28, 38, 89, 0.1), 0 10px 10px rgba(28, 38, 89, 0.04);
+
+    --nubem-font: "Comfortaa", "Segoe UI", system-ui, sans-serif;
+
+    /* Light theme (default) — --auth-* tokens from .light-theme */
+    --nubem-page-bg: var(--nubem-bg-elevated);
+    --nubem-page-text: var(--nubem-brand-primary);
+    --nubem-card-bg: var(--nubem-bg-elevated);
+    --nubem-card-border: var(--nubem-neutral-light);
+    --nubem-card-title: var(--nubem-brand-primary);
+    --nubem-card-description: var(--nubem-text-muted);
+    --nubem-label: var(--nubem-brand-primary);
+    --nubem-muted: var(--nubem-text-muted);
+    --nubem-link: var(--nubem-brand-primary);
+    --nubem-link-hover: var(--nubem-brand-secondary);
+    --nubem-inline-link: var(--nubem-brand-secondary-alt);
+    --nubem-inline-link-hover: var(--nubem-brand-secondary-alt-deep);
+    --nubem-input-bg: var(--nubem-bg-elevated);
+    --nubem-input-focus-bg: var(--nubem-bg-elevated);
+    --nubem-input-border: var(--nubem-neutral-light);
+    --nubem-input-accent: var(--nubem-brand-primary);
+    --nubem-input-text: var(--nubem-brand-primary);
+    --nubem-btn-primary-bg: var(--nubem-brand-primary);
+    --nubem-btn-primary-bg-hover: var(--nubem-brand-secondary);
+    --nubem-btn-primary-text: var(--nubem-text-inverse);
+    --nubem-btn-primary-border: transparent;
+}
+
+/* Dark theme — --auth-* tokens from .dark-theme */
+html.pf-v5-theme-dark {
+    --nubem-page-bg: #1b2230;
+    --nubem-page-text: var(--nubem-text-inverse);
+    --nubem-card-bg: #1c2659;
+    --nubem-card-border: rgba(229, 229, 229, 0.2);
+    --nubem-card-title: var(--nubem-text-inverse);
+    --nubem-card-description: var(--nubem-text-inverse);
+    --nubem-label: var(--nubem-text-inverse);
+    --nubem-muted: var(--nubem-text-inverse);
+    --nubem-link: var(--nubem-text-inverse);
+    --nubem-link-hover: var(--nubem-neutral-light);
+    --nubem-inline-link: #a7c8ff;
+    --nubem-inline-link-hover: var(--nubem-text-inverse);
+    --nubem-input-bg: #131823;
+    --nubem-input-focus-bg: #1b2230;
+    --nubem-input-border: rgba(195, 198, 209, 0.35);
+    --nubem-input-accent: var(--nubem-brand-secondary);
+    --nubem-input-text: #f3f0f0;
+    --nubem-btn-primary-bg: var(--nubem-brand-secondary);
+    --nubem-btn-primary-bg-hover: var(--nubem-brand-secondary);
+    --nubem-btn-primary-text: var(--nubem-text-inverse);
+    --nubem-btn-primary-border: var(--nubem-brand-secondary);
+}
+
+/* ---------------------------------------------------------------- */
+/* Page shell (.auth-page-shell)                                    */
+/* ---------------------------------------------------------------- */
+
+html,
+body,
+.pf-v5-c-login {
+    font-family: var(--nubem-font);
+}
+
+body#keycloak-bg.nubem-auth-page {
+    background: var(--nubem-page-bg);
+    color: var(--nubem-page-text);
+}
+
+.nubem-auth-page .pf-v5-c-login {
+    background: var(--nubem-page-bg);
+}
+
+/* Layout (.auth-layout: max-width 480px, centered column) */
+/* PatternFly adds large side padding on wide viewports; reset it so the
+   card fills the 480px column like the native .auth-layout. */
+.nubem-auth-page .pf-v5-c-login__container {
+    width: 100%;
+    max-width: 480px;
+    padding-left: 0;
+    padding-right: 0;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
+    justify-items: stretch;
+}
+
+/* Mobile Authenticator Setup (CONFIGURE_TOTP): slightly wider card to reduce scroll height */
+.nubem-auth-page:has(#kc-totp-settings) .pf-v5-c-login__container {
+    max-width: 640px;
+}
+
+.nubem-auth-page #kc-totp-settings a {
+    color: var(--nubem-inline-link);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.nubem-auth-page #kc-totp-settings a:hover {
+    color: var(--nubem-inline-link-hover);
+}
+
+/* ---------------------------------------------------------------- */
+/* Brand (.auth-brand / .auth-brand-logo-image)                     */
+/* ---------------------------------------------------------------- */
+
+.nubem-auth-page .nubem-brand-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 0;
+    margin-bottom: var(--nubem-space-8);
+}
+
+.nubem-auth-page .nubem-brand-logo img {
+    height: 96px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.nubem-auth-page .nubem-brand-logo img.nubem-logo-dark {
+    display: none;
+}
+
+html.pf-v5-theme-dark .nubem-auth-page .nubem-brand-logo img.nubem-logo-light {
+    display: none;
+}
+
+html.pf-v5-theme-dark .nubem-auth-page .nubem-brand-logo img.nubem-logo-dark {
+    display: block;
+}
+
+/* ---------------------------------------------------------------- */
+/* Card (.auth-card)                                                */
+/* ---------------------------------------------------------------- */
+
+.nubem-auth-page .pf-v5-c-login__main {
+    background: var(--nubem-card-bg);
+    border: 1px solid var(--nubem-card-border);
+    border-radius: var(--nubem-radius-lg);
+    box-shadow: var(--nubem-elevation-3);
+    padding: var(--nubem-space-24);
+    margin-bottom: 0;
+    color: var(--nubem-page-text);
+    /* PatternFly assigns ~64px padding-block-end to the last main child. */
+    --pf-v5-c-login__main-footer--PaddingBottom: 0;
+}
+
+/* PatternFly adds large internal padding/gaps on header, body and footer. */
+.nubem-auth-page .pf-v5-c-login__main-header,
+.nubem-auth-page .pf-v5-c-login__main-body {
+    padding: 0;
+    margin: 0;
+}
+
+.nubem-auth-page .pf-v5-c-login__main-footer {
+    padding: 0;
+    margin: 0;
+}
+
+.nubem-auth-page .pf-v5-c-login__main-footer:empty {
+    display: none;
+}
+
+/* PatternFly: .pf-v5-c-login__main > :last-child:not(.pf-v5-c-login__main-footer) */
+.nubem-auth-page .pf-v5-c-login__main > :last-child:not(.pf-v5-c-login__main-footer),
+.nubem-auth-page .nubem-auth-footer {
+    padding-block-end: 0;
+    padding-bottom: 0;
+}
+
+/* Header (.auth-card-header h2 / p) — logo above the title, centered. */
+.nubem-auth-page .pf-v5-c-login__main-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    row-gap: 0;
+    padding-top: 0;
+    margin-bottom: var(--nubem-space-16);
+    text-align: center;
+}
+
+.nubem-auth-page #kc-page-title,
+.nubem-auth-page #kc-page-title.pf-v5-c-title {
+    margin: 0;
+    color: var(--nubem-card-title);
+    font-family: var(--nubem-font);
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+}
+
+.nubem-auth-page .nubem-card-subtitle,
+.nubem-auth-page .pf-v5-c-login__main-header .subtitle,
+.nubem-auth-page .instruction {
+    margin: var(--nubem-space-8) 0 0;
+    padding: 0;
+    color: var(--nubem-card-description);
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+}
+
+/* ---------------------------------------------------------------- */
+/* Form fields (.auth-input-group / .form-control-auth)             */
+/* ---------------------------------------------------------------- */
+
+/* PatternFly renders the form as a grid with a 24px row-gap; combined with the
+   group margin it doubled the spacing. Match the native .signup-input-group
+   (~12px between fields). */
+.nubem-auth-page .pf-v5-c-form {
+    row-gap: var(--nubem-space-12);
+    gap: var(--nubem-space-12);
+}
+
+.nubem-auth-page .pf-v5-c-form__group {
+    margin-bottom: 0;
+}
+
+.nubem-auth-page .pf-v5-c-form__label.nubem-password-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--nubem-space-8);
+    width: 100%;
+    margin-bottom: var(--nubem-space-8);
+}
+
+.nubem-auth-page .nubem-form-group > .pf-v5-c-form__label:not(.nubem-password-head) {
+    display: block;
+    margin-bottom: var(--nubem-space-8);
+}
+
+.nubem-auth-page .nubem-password-head > label.pf-v5-c-form__label {
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    flex: 0 1 auto;
+}
+
+.nubem-auth-page .nubem-password-head .nubem-inline-link {
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+    color: var(--nubem-link);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.nubem-auth-page .nubem-inline-link:hover {
+    color: var(--nubem-link-hover);
+}
+
+.nubem-auth-page .pf-v5-c-form__label:not(.nubem-password-head),
+.nubem-auth-page .pf-v5-c-form__label-text {
+    font-family: var(--nubem-font);
+    text-transform: none;
+    letter-spacing: 0.06em;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: var(--nubem-label);
+    padding-bottom: 0;
+    width: fit-content;
+}
+
+/* Vue-style inputs: left accent border, no PatternFly bottom line. */
+.nubem-auth-page .pf-v5-c-form-control {
+    position: relative;
+    align-items: center;
+    border-radius: var(--nubem-radius-sm);
+    background-color: var(--nubem-input-bg);
+    border: 1px solid transparent;
+    border-left: 2px solid var(--nubem-input-border);
+    box-shadow: none;
+}
+
+/* PatternFly draws its own bottom accent line (blue #0066cc) via ::after and a
+   focus outline; suppress them so only the Vue-style border shows. */
+.nubem-auth-page .pf-v5-c-form-control::before,
+.nubem-auth-page .pf-v5-c-form-control::after {
+    display: none !important;
+}
+
+.nubem-auth-page .pf-v5-c-form-control input,
+.nubem-auth-page .pf-v5-c-form-control select {
+    color: var(--nubem-input-text);
+    font-family: var(--nubem-font);
+    font-size: 14px;
+    line-height: 20px;
+    padding: var(--nubem-space-12) var(--nubem-space-16);
+}
+
+/* PatternFly status icon: grid aligns to start and adds padding-top. */
+.nubem-auth-page .pf-v5-c-form-control__utilities {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    height: 100%;
+    top: auto;
+    inset-block-start: auto;
+    transform: none;
+    padding-block: 0;
+}
+
+.nubem-auth-page .pf-v5-c-form-control__icon.pf-m-status {
+    display: flex;
+    align-items: center;
+    height: auto;
+    padding-block-start: 0;
+    line-height: 1;
+}
+
+.nubem-auth-page .pf-v5-c-form-control.pf-m-error > input {
+    padding-right: 44px;
+}
+
+.nubem-auth-page .pf-v5-c-input-group .pf-v5-c-form-control__utilities {
+    padding-inline-end: 44px;
+}
+
+.nubem-auth-page .pf-v5-c-input-group .pf-v5-c-form-control.pf-m-error > input {
+    padding-right: 88px;
+}
+
+/* Registration/user-profile: input also has pf-v5-c-form-control — single border on wrapper only. */
+.nubem-auth-page .pf-v5-c-form-control > input.pf-v5-c-form-control,
+.nubem-auth-page .pf-v5-c-form-control > textarea.pf-v5-c-form-control,
+.nubem-auth-page .pf-v5-c-form-control > select.pf-v5-c-form-control {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    width: 100%;
+}
+
+.nubem-auth-page .pf-v5-c-form-control > input.pf-v5-c-form-control::before,
+.nubem-auth-page .pf-v5-c-form-control > input.pf-v5-c-form-control::after,
+.nubem-auth-page .pf-v5-c-form-control > textarea.pf-v5-c-form-control::before,
+.nubem-auth-page .pf-v5-c-form-control > textarea.pf-v5-c-form-control::after,
+.nubem-auth-page .pf-v5-c-form-control > select.pf-v5-c-form-control::before,
+.nubem-auth-page .pf-v5-c-form-control > select.pf-v5-c-form-control::after {
+    display: none !important;
+}
+
+.nubem-auth-page .pf-v5-c-form-control input:focus,
+.nubem-auth-page .pf-v5-c-form-control select:focus,
+.nubem-auth-page .pf-v5-c-form-control > input.pf-v5-c-form-control:focus,
+.nubem-auth-page .pf-v5-c-form-control > textarea.pf-v5-c-form-control:focus,
+.nubem-auth-page .pf-v5-c-form-control > select.pf-v5-c-form-control:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+.nubem-auth-page .pf-v5-c-form-control:focus-within {
+    border: 1px solid var(--nubem-input-border);
+    border-left: 2px solid var(--nubem-input-accent);
+    background-color: var(--nubem-input-focus-bg);
+    box-shadow: none;
+}
+
+.nubem-auth-page .pf-v5-c-form-control::placeholder,
+.nubem-auth-page .pf-v5-c-form-control input::placeholder {
+    color: var(--nubem-text-muted);
+    font-family: var(--nubem-font);
+}
+
+/* Password field: overlay the visibility toggle inside the input like the
+   native .auth-password-wrapper, instead of PatternFly's separate button box. */
+.nubem-auth-page .pf-v5-c-input-group {
+    position: relative;
+    display: block;
+    background: transparent;
+}
+
+.nubem-auth-page .pf-v5-c-input-group__item.pf-m-fill {
+    width: 100%;
+}
+
+.nubem-auth-page .pf-v5-c-input-group .pf-v5-c-form-control {
+    width: 100%;
+}
+
+.nubem-auth-page .pf-v5-c-input-group__item {
+    border: none;
+    margin-inline-start: 0;
+    background: transparent;
+    --pf-v5-c-input-group__item--m-box--BorderLeftColor: transparent;
+    --pf-v5-c-input-group__item--m-box--BorderRightColor: transparent;
+    --pf-v5-c-input-group__item--m-box--BorderTopColor: transparent;
+    --pf-v5-c-input-group__item--m-box--BorderBottomColor: transparent;
+}
+
+.nubem-auth-page .pf-v5-c-input-group .pf-v5-c-form-control input {
+    padding-right: 44px;
+}
+
+.nubem-auth-page .pf-v5-c-input-group__item:last-child {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    border: none;
+    border-left: none;
+}
+
+/* Password visibility toggle button */
+.nubem-auth-page .pf-v5-c-button.pf-m-control {
+    color: var(--nubem-label);
+    width: 44px;
+    height: 100%;
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+}
+
+.nubem-auth-page .pf-v5-c-button.pf-m-control i {
+    color: inherit;
+}
+
+html.pf-v5-theme-dark .nubem-auth-page .pf-v5-c-button.pf-m-control {
+    color: var(--nubem-text-inverse);
+}
+
+html.pf-v5-theme-dark .nubem-auth-page .pf-v5-c-button.pf-m-control:hover {
+    color: var(--nubem-neutral-light);
+}
+
+.nubem-auth-page .pf-v5-c-button.pf-m-control::before,
+.nubem-auth-page .pf-v5-c-button.pf-m-control::after {
+    display: none !important;
+}
+
+.nubem-auth-page .pf-v5-c-button.pf-m-control:hover {
+    background: transparent;
+}
+
+/* Checkbox (remember me) — .auth-remember-row */
+.nubem-auth-page .nubem-remember-row {
+    margin: 0.3rem 0 1rem;
+}
+
+.nubem-auth-page .nubem-remember-row .pf-v5-c-check__label,
+.nubem-auth-page .pf-v5-c-check__label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--nubem-muted);
+    font-size: 0.84rem;
+    cursor: pointer;
+}
+
+.nubem-auth-page .pf-v5-c-check__input {
+    margin: 0;
+    width: 1rem;
+    height: 1rem;
+    accent-color: var(--nubem-brand-primary);
+}
+
+html.pf-v5-theme-dark .nubem-auth-page .pf-v5-c-check__input {
+    appearance: none;
+    -webkit-appearance: none;
+    display: inline-grid;
+    place-content: center;
+    background: var(--nubem-text-inverse);
+    border: 1px solid var(--nubem-brand-primary);
+    border-radius: var(--nubem-radius-sm);
+    box-shadow: none;
+    accent-color: transparent;
+}
+
+html.pf-v5-theme-dark .nubem-auth-page .pf-v5-c-check__input::before {
+    content: "";
+    width: 0.55rem;
+    height: 0.55rem;
+    transform: scale(0);
+    background: var(--nubem-brand-primary);
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+html.pf-v5-theme-dark .nubem-auth-page .pf-v5-c-check__input:checked::before {
+    transform: scale(1);
+}
+
+/* Light theme input borders — match .light-theme .auth-field-wrapper */
+html:not(.pf-v5-theme-dark) .nubem-auth-page .pf-v5-c-form-control {
+    background-color: var(--nubem-bg-elevated);
+    border-top: 1px solid var(--nubem-neutral-light);
+    border-right: 1px solid var(--nubem-neutral-light);
+    border-bottom: 1px solid var(--nubem-neutral-light);
+    border-left: 2px solid var(--nubem-neutral-light);
+}
+
+html:not(.pf-v5-theme-dark) .nubem-auth-page .pf-v5-c-form-control:focus-within {
+    border-color: var(--nubem-brand-primary);
+    border-left: 2px solid var(--nubem-brand-primary);
+}
+
+html:not(.pf-v5-theme-dark) .nubem-auth-page .pf-v5-c-form-control > input.pf-v5-c-form-control,
+html:not(.pf-v5-theme-dark) .nubem-auth-page .pf-v5-c-form-control > textarea.pf-v5-c-form-control,
+html:not(.pf-v5-theme-dark) .nubem-auth-page .pf-v5-c-form-control > select.pf-v5-c-form-control {
+    border: none;
+    background: transparent;
+}
+
+/* Error / helper text */
+.nubem-auth-page .pf-v5-c-helper-text__item-text.pf-m-error,
+.nubem-auth-page .kc-feedback-text {
+    font-size: 14px;
+}
+
+.nubem-auth-page .pf-v5-c-helper-text__item.pf-m-error .pf-v5-c-helper-text__item-text {
+    color: var(--nubem-feedback-error);
+}
+
+/* ---------------------------------------------------------------- */
+/* Buttons (.auth-submit-btn)                                       */
+/* ---------------------------------------------------------------- */
+
+.nubem-auth-page .pf-v5-c-button.pf-m-primary {
+    width: 100%;
+    min-height: 44px;
+    padding: var(--nubem-space-12) var(--nubem-space-16);
+    font-family: var(--nubem-font);
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+    border-radius: var(--nubem-radius-md);
+    background-color: var(--nubem-btn-primary-bg);
+    background-image: none;
+    color: var(--nubem-btn-primary-text);
+    border: 1px solid var(--nubem-btn-primary-border);
+    box-shadow: var(--nubem-elevation-1);
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.nubem-auth-page .pf-v5-c-button.pf-m-primary:hover {
+    background-color: var(--nubem-btn-primary-bg-hover);
+    color: var(--nubem-btn-primary-text);
+    box-shadow: var(--nubem-elevation-2);
+}
+
+.nubem-auth-page .pf-v5-c-form__actions {
+    margin: 0;
+    padding: 0;
+}
+
+.nubem-auth-page #kc-passwd-update-form .pf-v5-c-form__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--nubem-space-12);
+}
+
+.nubem-auth-page #kc-passwd-update-form .pf-v5-c-form__actions .pf-v5-c-button.pf-m-primary {
+    width: 100%;
+}
+
+.nubem-auth-page #kc-passwd-update-form .pf-v5-c-form__actions .pf-v5-c-button.pf-m-secondary {
+    align-self: center;
+    width: auto;
+    min-width: 8rem;
+}
+
+/* Mobile Authenticator Setup: Submit + Cancel on one row (like Marketplace modals) */
+.nubem-auth-page .nubem-totp-actions,
+.nubem-auth-page:has(#kc-totp-settings-form) .pf-v5-c-form__actions {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    justify-content: flex-end;
+    gap: var(--nubem-space-12);
+}
+
+.nubem-auth-page .nubem-totp-actions .pf-v5-c-button,
+.nubem-auth-page:has(#kc-totp-settings-form) .pf-v5-c-form__actions .pf-v5-c-button {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    white-space: normal;
+    text-align: center;
+}
+
+.nubem-auth-page .nubem-totp-actions .pf-v5-c-button:only-child,
+.nubem-auth-page:has(#kc-totp-settings-form) .pf-v5-c-form__actions .pf-v5-c-button:only-child {
+    flex: 0 1 auto;
+}
+
+html.pf-v5-theme-dark .nubem-auth-page .pf-v5-c-button.pf-m-primary,
+html.pf-v5-theme-dark .nubem-auth-page .pf-v5-c-button.pf-m-primary:hover {
+    box-shadow: var(--nubem-elevation-2);
+}
+
+.nubem-auth-page .pf-v5-c-button.pf-m-secondary {
+    min-height: 44px;
+    font-family: var(--nubem-font);
+    font-weight: 700;
+    border-radius: var(--nubem-radius-md);
+    color: var(--nubem-link);
+    border: 1px solid var(--nubem-link);
+}
+
+.nubem-auth-page .pf-v5-c-button.pf-m-secondary:hover {
+    color: var(--nubem-link-hover);
+    border-color: var(--nubem-link-hover);
+}
+
+/* ---------------------------------------------------------------- */
+/* Links (.form-link / .auth-links-block) */
+.nubem-auth-page a,
+.nubem-auth-page .nubem-form-link {
+    color: var(--nubem-link);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    text-decoration: none;
+}
+
+.nubem-auth-page a:hover,
+.nubem-auth-page .nubem-form-link:hover {
+    color: var(--nubem-link-hover);
+}
+
+.nubem-auth-page .nubem-links-block {
+    margin-top: 0;
+    padding: 0;
+    background: transparent;
+}
+
+.nubem-auth-page .nubem-links-block p {
+    margin: var(--nubem-space-8) 0 0;
+    color: var(--nubem-muted);
+    font-size: 14px;
+    line-height: 20px;
+    text-align: left;
+}
+
+.nubem-auth-page .nubem-forgot-submit {
+    margin-top: var(--nubem-space-4);
+}
+
+.nubem-auth-page .nubem-forgot-links-block {
+    margin-top: var(--nubem-space-12);
+}
+
+.nubem-auth-page .pf-v5-c-login__main-footer-band {
+    padding: var(--nubem-space-12) 0 0;
+    background: transparent;
+}
+
+.nubem-auth-page .pf-v5-c-login__main-footer-band-item {
+    color: var(--nubem-muted);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+/* Info block under the form (registration link, instructions) */
+.nubem-auth-page #kc-info,
+.nubem-auth-page .login-pf-signup {
+    margin: 0.8rem 0 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    color: var(--nubem-muted);
+    font-size: 14px;
+}
+
+/* ---------------------------------------------------------------- */
+/* Alerts                                                           */
+/* ---------------------------------------------------------------- */
+
+.nubem-auth-page .pf-v5-c-alert {
+    border-radius: var(--nubem-radius-sm);
+    font-family: var(--nubem-font);
+    margin-bottom: var(--nubem-space-12);
+}
+
+/* ---------------------------------------------------------------- */
+/* Footer controls (.auth-card-footer) */
+.nubem-auth-page .nubem-auth-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--nubem-space-12);
+    width: 100%;
+    margin-top: var(--nubem-space-16);
+    margin-bottom: 0;
+    padding: 0;
+    border: none;
+    text-align: center;
+}
+
+.nubem-auth-page .nubem-footer-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    min-height: 32px;
+    padding: var(--nubem-space-4);
+    border: none;
+    border-radius: var(--nubem-radius-sm);
+    background: transparent;
+    color: var(--nubem-link);
+    box-shadow: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.15s ease;
+}
+
+.nubem-auth-page .nubem-footer-btn i {
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1;
+}
+
+.nubem-auth-page .nubem-footer-btn:not(:disabled):hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--nubem-link-hover);
+}
+
+.nubem-auth-page .nubem-footer-btn:disabled {
+    opacity: 0.85;
+    cursor: default;
+}
+
+html:not(.pf-v5-theme-dark) .nubem-auth-page .nubem-footer-btn:not(:disabled):hover {
+    background: var(--nubem-bg-surface);
+}
+
+/* Show the icon representing the theme you can switch TO. */
+.nubem-auth-page .nubem-icon-dark {
+    display: inline-block;
+}
+
+.nubem-auth-page .nubem-icon-light {
+    display: none;
+}
+
+html.pf-v5-theme-dark .nubem-auth-page .nubem-icon-dark {
+    display: none;
+}
+
+html.pf-v5-theme-dark .nubem-auth-page .nubem-icon-light {
+    display: inline-block;
+}
+
+/* ---------------------------------------------------------------- */
+/* Responsive (auth.css @media 640px)                               */
+/* ---------------------------------------------------------------- */
+
+@media (max-width: 640px) {
+    .nubem-auth-page .pf-v5-c-login__container {
+        max-width: 100%;
+        padding-left: var(--nubem-space-12);
+        padding-right: var(--nubem-space-12);
+    }
+
+    .nubem-auth-page .pf-v5-c-login__main {
+        padding: var(--nubem-space-16);
+    }
+
+    .nubem-auth-page #kc-page-title {
+        font-size: 20px;
+        line-height: 28px;
+    }
+}
+
+/* ---------------------------------------------------------------- */
+/* Cookies modal (CookiesModal.vue)                                 */
+/* ---------------------------------------------------------------- */
+
+body.nubem-cookies-modal-open {
+    overflow: hidden;
+}
+
+.nubem-cookies-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--nubem-space-8);
+    background: var(--nubem-page-bg);
+    overflow: auto;
+}
+
+.nubem-cookies-modal.hidden {
+    display: none;
+}
+
+.nubem-cookies-dialog {
+    width: 100%;
+    max-width: 900px;
+    background: var(--nubem-card-bg);
+    border: 1px solid var(--nubem-card-border);
+    border-radius: var(--nubem-radius-md);
+    box-shadow: var(--nubem-elevation-4);
+    color: var(--nubem-page-text);
+    font-family: var(--nubem-font);
+}
+
+.nubem-cookies-header {
+    border-bottom: 1px solid var(--nubem-card-border);
+    padding: var(--nubem-space-16);
+}
+
+.nubem-cookies-title {
+    margin: 0;
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: 700;
+    color: var(--nubem-card-title);
+    text-align: center;
+}
+
+.nubem-cookies-body {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--nubem-space-24);
+    padding: var(--nubem-space-24);
+}
+
+.nubem-cookie-option {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nubem-space-16);
+    min-width: 0;
+    height: 100%;
+    padding: var(--nubem-space-16);
+    border: 1px solid var(--nubem-card-border);
+    border-radius: var(--nubem-radius-md);
+    background: var(--nubem-input-bg);
+}
+
+html.pf-v5-theme-dark .nubem-cookie-option {
+    background: #131823;
+}
+
+.nubem-cookie-option-title {
+    margin: 0;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 600;
+    color: var(--nubem-card-title);
+    text-align: center;
+}
+
+.nubem-cookie-option-lead {
+    margin: 0;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--nubem-card-description);
+}
+
+.nubem-cookie-purposes {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nubem-space-12);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nubem-cookie-purposes li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--nubem-space-8);
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--nubem-muted);
+}
+
+.nubem-cookie-purposes i {
+    flex-shrink: 0;
+    width: 20px;
+    text-align: center;
+    color: var(--nubem-brand-secondary);
+}
+
+.nubem-cookie-option-actions {
+    margin-top: auto;
+}
+
+.nubem-cookie-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--nubem-space-8);
+    width: 100%;
+    min-height: 44px;
+    padding: var(--nubem-space-8) var(--nubem-space-16);
+    font-family: var(--nubem-font);
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: var(--nubem-radius-md);
+    cursor: pointer;
+    border: none;
+}
+
+.nubem-cookie-btn-primary {
+    background: var(--nubem-btn-primary-bg);
+    color: var(--nubem-btn-primary-text);
+    border: 1px solid var(--nubem-btn-primary-border);
+    box-shadow: var(--nubem-elevation-1);
+}
+
+.nubem-cookie-btn-primary:hover {
+    background: var(--nubem-btn-primary-bg-hover);
+    box-shadow: var(--nubem-elevation-2);
+}
+
+.nubem-cookies-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--nubem-space-16);
+    padding: var(--nubem-space-16) var(--nubem-space-24) var(--nubem-space-24);
+    border-top: 1px solid var(--nubem-card-border);
+}
+
+.nubem-cookies-footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--nubem-space-8);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.nubem-cookies-footer-link {
+    color: var(--nubem-brand-secondary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.nubem-cookies-footer-link:hover {
+    color: var(--nubem-link-hover);
+    text-decoration: underline;
+}
+
+.nubem-cookies-footer-link--disabled,
+.nubem-cookies-footer-link[aria-disabled="true"] {
+    color: var(--nubem-muted);
+    pointer-events: none;
+    text-decoration: none;
+    cursor: default;
+}
+
+.nubem-cookies-footer-sep {
+    color: var(--nubem-muted);
+}
+
+@media (max-width: 640px) {
+    .nubem-cookies-body {
+        grid-template-columns: 1fr;
+        padding: var(--nubem-space-16);
+        gap: var(--nubem-space-16);
+    }
+
+    .nubem-cookie-option-title {
+        font-size: 18px;
+        line-height: 26px;
+    }
+
+    .nubem-cookies-footer {
+        padding: var(--nubem-space-16);
+    }
+}

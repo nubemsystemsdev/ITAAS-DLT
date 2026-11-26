@@ -1,0 +1,1630 @@
+{
+    "primaryKeys": [
+        {
+            "collection": "agent_trace_event",
+            "field": "id"
+        },
+        {
+            "collection": "agent_usage",
+            "field": "id"
+        },
+        {
+            "collection": "agent_versions",
+            "field": "id"
+        },
+        {
+            "collection": "agent",
+            "field": "id"
+        },
+        {
+            "collection": "catalog_item",
+            "field": "id"
+        },
+        {
+            "collection": "custom_agent_request",
+            "field": "id"
+        },
+        {
+            "collection": "dynamic_configuration",
+            "field": "configKey"
+        },
+        {
+            "collection": "ia_platform_mapping",
+            "field": "id"
+        },
+        {
+            "collection": "identity_credentials",
+            "field": "credentialId"
+        },
+        {
+            "collection": "itaas_flow_favorite",
+            "field": "id"
+        },
+        {
+            "collection": "itaas_flow_setting",
+            "field": "flowId"
+        },
+        {
+            "collection": "itaas_workspace_sync_pending",
+            "field": "id"
+        },
+        {
+            "collection": "item_plan",
+            "field": "id"
+        },
+        {
+            "collection": "notifications",
+            "field": "id"
+        },
+        {
+            "collection": "organization_deletion_request",
+            "field": "id"
+        },
+        {
+            "collection": "organization_license_assignments",
+            "field": "id"
+        },
+        {
+            "collection": "organization_license_pool",
+            "field": "id"
+        },
+        {
+            "collection": "organization_membership",
+            "field": "id"
+        },
+        {
+            "collection": "organization_request",
+            "field": "id"
+        },
+        {
+            "collection": "organization",
+            "field": "id"
+        },
+        {
+            "collection": "payment_event",
+            "field": "id"
+        },
+        {
+            "collection": "payment",
+            "field": "id"
+        },
+        {
+            "collection": "payments_platform_config",
+            "field": "id"
+        },
+        {
+            "collection": "plan_component",
+            "field": "id"
+        },
+        {
+            "collection": "plan_pricing",
+            "field": "id"
+        },
+        {
+            "collection": "plan",
+            "field": "id"
+        },
+        {
+            "collection": "stripe_account",
+            "field": "id"
+        },
+        {
+            "collection": "subscription",
+            "field": "id"
+        },
+        {
+            "collection": "token_rule_config",
+            "field": "id"
+        },
+        {
+            "collection": "token_traceability",
+            "field": "id"
+        },
+        {
+            "collection": "token_wallet",
+            "field": "id"
+        },
+        {
+            "collection": "traceability_event",
+            "field": "id"
+        },
+        {
+            "collection": "sessions",
+            "field": "id"
+        },
+        {
+            "collection": "user_channels",
+            "field": "id"
+        },
+        {
+            "collection": "user_dids",
+            "field": "id"
+        },
+        {
+            "collection": "user_profile",
+            "field": "id"
+        },
+        {
+            "collection": "user_roles",
+            "field": "id"
+        },
+        {
+            "collection": "tp_users",
+            "field": "id"
+        },
+        {
+            "collection": "users",
+            "field": "id"
+        },
+        {
+            "collection": "verifiable_credentials",
+            "field": "vcId"
+        },
+        {
+            "collection": "wallets",
+            "field": "id"
+        }
+    ],
+    "indexes": [
+        {
+            "collection": "agent_trace_event",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "eventId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "agent_trace_event",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "eventType",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "agent_trace_event",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "flowId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "agent_trace_event",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "createdAt",
+                    "dir": "DESC"
+                }
+            ]
+        },
+        {
+            "collection": "agent_trace_event",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "actor",
+                    "dir": ""
+                },
+                {
+                    "name": "createdAt",
+                    "dir": "DESC"
+                }
+            ]
+        },
+        {
+            "collection": "agent_trace_event",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "organizationId",
+                    "dir": ""
+                },
+                {
+                    "name": "createdAt",
+                    "dir": "DESC"
+                }
+            ]
+        },
+        {
+            "collection": "agent_trace_event",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "executionId",
+                    "dir": ""
+                },
+                {
+                    "name": "occurredAt",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "agent_usage",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "subscriptionId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "agent_usage",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "referenceMonthYear",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "agent_versions",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "agentId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "agent_versions",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "status",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "agent",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "code",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "agent",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "type",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "agent",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "category",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "agent",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "isActive",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "agent",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "visibility",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "agent",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "ownerType",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "agent",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "ownerId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "catalog_item",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "type",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "catalog_item",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "status",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "catalog_item",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "visibility",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "catalog_item",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "price",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "catalog_item",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "name",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "catalog_item",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "createdAt",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "catalog_item",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "status",
+                    "dir": ""
+                },
+                {
+                    "name": "visibility",
+                    "dir": ""
+                },
+                {
+                    "name": "type",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "catalog_item",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "status",
+                    "dir": ""
+                },
+                {
+                    "name": "visibility",
+                    "dir": ""
+                },
+                {
+                    "name": "createdAt",
+                    "dir": "DESC"
+                }
+            ]
+        },
+        {
+            "collection": "catalog_item",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "status",
+                    "dir": ""
+                },
+                {
+                    "name": "visibility",
+                    "dir": ""
+                },
+                {
+                    "name": "price",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "custom_agent_request",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "status",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "custom_agent_request",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "requesterUserId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "custom_agent_request",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "organizationId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "custom_agent_request",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "createdAt",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "custom_agent_request",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "paymentId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "custom_agent_request",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "monthlySubscriptionId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "ia_platform_mapping",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "dltOrganizationId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "ia_platform_mapping",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "dltUserId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "ia_platform_mapping",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "iaWorkspaceId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "itaas_flow_favorite",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "userId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "itaas_flow_favorite",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "flowId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "itaas_flow_favorite",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "userId",
+                    "dir": ""
+                },
+                {
+                    "name": "flowId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "itaas_flow_favorite",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "createdAt",
+                    "dir": "DESC"
+                }
+            ]
+        },
+        {
+            "collection": "itaas_workspace_sync_pending",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "subjectType",
+                    "dir": ""
+                },
+                {
+                    "name": "subjectId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "itaas_workspace_sync_pending",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "operation",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "item_plan",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "itemId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "item_plan",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "billingCycle",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "item_plan",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "priceCents",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "item_plan",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "itemId",
+                    "dir": ""
+                },
+                {
+                    "name": "billingCycle",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "item_plan",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "billingCycle",
+                    "dir": ""
+                },
+                {
+                    "name": "priceCents",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "notifications",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "uid",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "notifications",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "date",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "notifications",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "read",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_deletion_request",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "organizationId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_deletion_request",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "status",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_deletion_request",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "requestedAt",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_license_assignments",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "organizationId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_license_assignments",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "userId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_license_assignments",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "subscriptionId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_license_assignments",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "subscriptionId",
+                    "dir": ""
+                },
+                {
+                    "name": "userId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_license_assignments",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "licensePoolId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_license_assignments",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "licensePoolId",
+                    "dir": ""
+                },
+                {
+                    "name": "userId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_license_assignments",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "isActive",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_license_pool",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "organizationId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_license_pool",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "sourceSubscriptionId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_license_pool",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "organizationId",
+                    "dir": ""
+                },
+                {
+                    "name": "catalogItemId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_license_pool",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "sourceSubscriptionId",
+                    "dir": ""
+                },
+                {
+                    "name": "catalogItemId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_license_pool",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "itemPlanId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_license_pool",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "status",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_membership",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "userId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_membership",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "organizationId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_membership",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "organizationRole",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_membership",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "status",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_membership",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "joinedAt",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_request",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "status",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization_request",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "requestedAt",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "companyName",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "cifNif",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "adminUid",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "organization",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "createdAt",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "payment_event",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "paymentId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "payment_event",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "providerEventId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "payment_event",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "kind",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "payment_event",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "createdAt",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "payment",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "uid",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "payment",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "status",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "payment",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "providerSessionId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "payment",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "providerEventId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "payment",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "createdAt",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "payments_platform_config",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "updatedAt",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "plan_component",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "planId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "plan_component",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "catalogItemId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "plan_pricing",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "planId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "plan_pricing",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "billingCycle",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "plan_pricing",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "priceCents",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "plan_pricing",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "planId",
+                    "dir": ""
+                },
+                {
+                    "name": "billingCycle",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "plan_pricing",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "billingCycle",
+                    "dir": ""
+                },
+                {
+                    "name": "priceCents",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "plan",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "status",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "plan",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "name",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "plan",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "createdAt",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "plan",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "superiorPlanId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "plan",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "status",
+                    "dir": ""
+                },
+                {
+                    "name": "createdAt",
+                    "dir": "DESC"
+                }
+            ]
+        },
+        {
+            "collection": "stripe_account",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "uid",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "stripe_account",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "date",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "subscription",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "uid",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "subscription",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "organizationId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "subscription",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "subscribableId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "subscription",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "status",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "subscription",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "stripeSubscriptionId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "subscription",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "succeedingSubscriptionId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "token_rule_config",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "enabled",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "token_rule_config",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "updatedAt",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "token_traceability",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "operationId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "token_traceability",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "walletId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "token_traceability",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "actorUid",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "token_traceability",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "status",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "token_traceability",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "createdAt",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "token_traceability",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "paymentId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "token_wallet",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "scopeType",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "token_wallet",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "scopeId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "token_wallet",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "updatedAt",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "traceability_event",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "eventId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "traceability_event",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "eventType",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "traceability_event",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "domain",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "traceability_event",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "subjectId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "traceability_event",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "correlationId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "traceability_event",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "actorIdHash",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "traceability_event",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "subjectUserIdHash",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "traceability_event",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "status",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "traceability_event",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "createdAt",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "sessions",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "uid",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "tp_users",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "uid",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "users",
+            "unique": true,
+            "fields": [
+                {
+                    "name": "usernameLowerCase",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "users",
+            "unique": true,
+            "fields": [
+                {
+                    "name": "email",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "users",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "role",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "users",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "keycloakSub",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "verifiable_credentials",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "ownerId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "verifiable_credentials",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "credentialId",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "verifiable_credentials",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "isRevoked",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "wallets",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "uid",
+                    "dir": ""
+                }
+            ]
+        },
+        {
+            "collection": "wallets",
+            "unique": false,
+            "fields": [
+                {
+                    "name": "address",
+                    "dir": ""
+                }
+            ]
+        }
+    ]
+}

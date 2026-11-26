@@ -1,0 +1,319 @@
+.modal-container.modal-container-corner {
+    z-index: 1100;
+    align-items: flex-end;
+    padding-top: calc(var(--top-bar-size) - var(--space-12));
+    padding-right: calc(var(--space-32) + 44px);
+}
+
+.modal-container.modal-container-corner.modal-container-sidebar {
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    pointer-events: auto;
+}
+
+.modal-container.modal-container-corner.modal-container-sidebar .modal-dialog {
+    position: fixed;
+    margin: 0;
+    pointer-events: all;
+    width: auto;
+    max-width: none;
+    overflow: auto;
+    border-radius: var(--radius-md);
+}
+
+@media (max-width: 1024px) {
+    .modal-container.modal-container-corner.modal-container-sidebar {
+        background: transparent;
+        z-index: 12;
+    }
+}
+
+@media (min-width: 1025px) {
+    .modal-container.modal-container-corner.modal-container-sidebar {
+        justify-content: flex-end;
+        z-index: 250;
+    }
+
+    .modal-container.modal-container-corner.modal-container-sidebar .modal-dialog {
+        left: calc(var(--side-bar-size) - var(--space-8));
+        bottom: var(--space-16);
+        width: min(320px, calc(100vw - var(--side-bar-size) - var(--space-8)));
+        max-width: calc(100vw - var(--side-bar-size) - var(--space-8));
+    }
+
+    .sidebar-collapsed .modal-container.modal-container-corner.modal-container-sidebar .modal-dialog {
+        left: calc(var(--side-bar-size) + var(--space-8));
+        width: min(320px, calc(100vw - var(--side-bar-size) - var(--space-16)));
+        max-width: calc(100vw - var(--side-bar-size) - var(--space-16));
+    }
+}
+
+.modal-container.modal-container-corner .modal-dialog {
+    width: min(300px, calc(100% - var(--space-32)));
+    box-shadow: var(--elevation-3);
+}
+
+.modal-header-user-settings-dd {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-12);
+    min-width: 0;
+    width: 100%;
+    padding: var(--space-12);
+    background: var(--surface-container-low, var(--color-bg-surface));
+    border-top-left-radius: var(--radius-md);
+    border-top-right-radius: var(--radius-md);
+}
+
+.user-settings-dd-image {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.user-settings-dd-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    background-color: var(--user-profile-image-background);
+}
+
+.user-settings-dd-names {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    min-width: 0;
+    width: calc(100% - 48px - var(--space-12));
+}
+
+.user-settings-dd-username {
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    color: var(--text-color-secondary, var(--color-text-muted));
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-settings-dd-name {
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    color: var(--text-color, var(--color-text-primary));
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.settings-list-item {
+    min-height: 44px;
+}
+
+.settings-list-item-navigation {
+    margin-top: var(--space-4);
+    padding-top: var(--space-12);
+    border-top: 1px solid var(--color-neutral-light);
+}
+
+.settings-list-item-language {
+    cursor: default;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.settings-list-item-language,
+.settings-list-item-theme {
+    align-items: center;
+}
+
+.settings-list-item-language .settings-list-item-icon,
+.settings-list-item-theme .settings-list-item-icon,
+.settings-list-item-language .settings-list-item-caption,
+.settings-list-item-theme .settings-list-item-caption {
+    padding: 0;
+}
+
+.settings-list-item-language .settings-list-item-icon,
+.settings-list-item-theme .settings-list-item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.settings-list-item-language .settings-list-item-caption,
+.settings-list-item-theme .settings-list-item-caption {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+}
+
+.settings-list-item-language .settings-list-item-caption {
+    flex: 1 1 auto;
+    flex-shrink: 0;
+    min-width: auto;
+    white-space: nowrap;
+}
+
+.settings-list-item:hover {
+    background: var(--color-bg-surface);
+}
+
+.settings-list-item.router-link-active,
+.settings-list-item.router-link-exact-active {
+    background: var(--hover-color);
+}
+
+.settings-list-item:focus-visible {
+    outline: 2px solid var(--color-brand-secondary, var(--theme-focus-outline-color));
+    outline-offset: -2px;
+    background: var(--hover-color);
+}
+
+.settings-list-item-icon {
+    color: var(--color-brand-primary, var(--text-color));
+}
+
+.dark-theme .settings-list-item-icon {
+    color: var(--color-accent-readable);
+}
+
+.settings-list-item-caption {
+    color: var(--text-color, var(--color-text-primary));
+    line-height: 20px;
+}
+
+.language-inline-select-wrap {
+    position: relative;
+    flex: 0 0 108px;
+    width: 108px;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+}
+
+.language-inline-select-wrap::after {
+    content: "";
+    position: absolute;
+    right: var(--space-12);
+    top: 50%;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid var(--color-text-primary);
+    transform: translateY(-25%);
+    pointer-events: none;
+}
+
+.settings-list-item-language .form-select.language-inline-select {
+    margin-top: 0;
+    width: 100%;
+    height: 32px;
+    min-height: 32px;
+    padding-right: var(--space-32);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: none;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.settings-list-item-language .form-select {
+    margin-top: 0;
+}
+
+.dark-theme .settings-list-item:hover .language-inline-select-wrap::after,
+.dark-theme .settings-list-item:focus-visible .language-inline-select-wrap::after {
+    border-top-color: var(--color-text-inverse);
+}
+
+.dark-theme .settings-list-item:hover .form-select.language-inline-select,
+.dark-theme .settings-list-item:focus-visible .form-select.language-inline-select {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.dark-theme .settings-list-item:hover,
+.dark-theme .settings-list-item.router-link-active,
+.dark-theme .settings-list-item.router-link-exact-active,
+.dark-theme .settings-list-item:focus-visible {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.dark-theme .settings-list-item:hover .settings-list-item-caption,
+.dark-theme .settings-list-item.router-link-active .settings-list-item-caption,
+.dark-theme .settings-list-item.router-link-exact-active .settings-list-item-caption,
+.dark-theme .settings-list-item:focus-visible .settings-list-item-caption {
+    color: var(--color-text-inverse);
+}
+
+.dark-theme .settings-list-item:hover .settings-list-item-icon,
+.dark-theme .settings-list-item.router-link-active .settings-list-item-icon,
+.dark-theme .settings-list-item.router-link-exact-active .settings-list-item-icon,
+.dark-theme .settings-list-item:focus-visible .settings-list-item-icon {
+    color: var(--color-text-inverse);
+}
+
+.settings-theme-toggle {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    border-radius: var(--radius-pill);
+    background: var(--color-neutral-light);
+    transition: background 0.2s ease;
+    flex-shrink: 0;
+}
+
+.settings-theme-toggle-active {
+    background: var(--color-brand-secondary);
+}
+
+.settings-theme-toggle-knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--color-bg-elevated);
+    box-shadow: var(--elevation-1);
+    transition: transform 0.2s ease;
+}
+
+.settings-theme-toggle-active .settings-theme-toggle-knob {
+    transform: translateX(20px);
+}
+
+@media (max-width: 640px) {
+    .settings-list-item-language {
+        flex-wrap: nowrap;
+    }
+
+    .language-inline-select-wrap,
+    .modal-container.modal-container-corner.modal-container-sidebar .language-inline-select-wrap {
+        flex: 0 0 92px;
+        width: 92px;
+    }
+
+    .settings-list-item-language .form-select.language-inline-select {
+        height: 32px;
+        min-height: 32px;
+        font-size: 14px;
+        line-height: 20px;
+    }
+}

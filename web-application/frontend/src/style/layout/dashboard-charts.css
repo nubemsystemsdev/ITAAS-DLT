@@ -1,0 +1,96 @@
+.dashboard-echart {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    min-height: 180px;
+    display: block;
+}
+
+.dashboard-echart-graphic {
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+}
+
+.dashboard-echart-instance {
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    display: block;
+}
+
+.dashboard-echart-data {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    border: 0;
+}
+
+.dashboard-echart--tall {
+    height: 280px;
+}
+
+.dashboard-echart--fill {
+    flex: 1;
+    min-height: 220px;
+    height: 100%;
+}
+
+.dashboard-chart-panel {
+    display: flex;
+    flex-direction: column;
+    min-height: 280px;
+}
+
+.dashboard-chart-panel--compact {
+    min-height: 0;
+}
+
+.dashboard-chart-panel--fill {
+    flex: 1;
+    min-height: 280px;
+}
+
+.blockchain-period-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--space-8);
+}
+
+.blockchain-period-tab {
+    min-height: 44px;
+    padding: var(--space-8) var(--space-12);
+    border: 1px solid var(--color-neutral-light);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg-surface);
+    color: var(--color-text-muted);
+    font-family: Comfortaa, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.blockchain-period-tab--active {
+    background: var(--color-brand-primary);
+    border-color: var(--color-brand-primary);
+    color: var(--color-text-inverse);
+}
+
+.blockchain-period-tab:focus-visible {
+    outline: 2px solid var(--color-brand-secondary);
+    outline-offset: 2px;
+}
+
+.blockchain-period-panel {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 220px;
+}

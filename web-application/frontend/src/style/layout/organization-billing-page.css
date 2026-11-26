@@ -1,0 +1,143 @@
+.organization-billing-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-16);
+    flex-wrap: wrap;
+}
+
+.organization-billing-card {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: var(--space-16);
+}
+
+.organization-billing-toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+}
+
+.organization-billing-download-all {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-8);
+    flex-shrink: 0;
+}
+
+.organization-billing-state {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--color-text-muted);
+}
+
+.organization-billing-table col.org-billing-col-concept {
+    width: 18%;
+}
+
+.organization-billing-table col.org-billing-col-name {
+    width: 20%;
+}
+
+.organization-billing-table col.org-billing-col-date {
+    width: 11%;
+}
+
+.organization-billing-table col.org-billing-col-payment {
+    width: 12%;
+}
+
+.organization-billing-table col.org-billing-col-amount {
+    width: 13%;
+}
+
+.organization-billing-table col.org-billing-col-status {
+    width: 14%;
+}
+
+.organization-billing-table col.org-billing-col-actions {
+    width: 12%;
+}
+
+.organization-billing-table .payment-cell-name {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.organization-billing-table .text-center,
+.organization-billing-table th.text-center {
+    text-align: center !important;
+}
+
+.organization-billing-table .actions-cell {
+    text-align: center;
+}
+
+.organization-billing-table .payment-actions-inline {
+    justify-content: center;
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    .organization-billing-top {
+        align-items: stretch;
+    }
+
+    .organization-billing-download-all {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 1024px) {
+    .organization-billing-table.table-stack col {
+        width: auto !important;
+    }
+
+    .organization-billing-table.table-stack .payment-cell-concept,
+    .organization-billing-table.table-stack .payment-cell-name,
+    .organization-billing-table.table-stack .payment-cell-amount,
+    .organization-billing-table.table-stack .payment-cell-nowrap {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+    }
+}
+
+@media (max-width: 640px) {
+    .organization-billing-top {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .organization-billing-download-all {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .organization-billing-table.table-stack col {
+        width: auto !important;
+    }
+
+    .organization-billing-table.table-stack td {
+        overflow: visible;
+        text-overflow: clip;
+    }
+
+    .organization-billing-table.table-stack .payment-cell-concept,
+    .organization-billing-table.table-stack .payment-cell-name,
+    .organization-billing-table.table-stack .payment-cell-amount,
+    .organization-billing-table.table-stack .payment-cell-nowrap {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+    }
+}

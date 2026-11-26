@@ -1,0 +1,399 @@
+/* Theme colors */
+
+:root {
+    /* Corporate palette */
+    --color-brand-primary: #1c2659;
+    --color-brand-secondary: #5a7bae;
+    --color-brand-secondary-alt: #007885;
+    --color-brand-secondary-alt-deep: #00606b;
+    --color-brand-secondary-alpha-12: rgba(90, 123, 174, 0.12);
+    --color-brand-secondary-alpha-30: rgba(90, 123, 174, 0.3);
+    --color-brand-secondary-alpha-35: rgba(90, 123, 174, 0.35);
+    --color-brand-secondary-alt-alpha-24: rgba(0, 120, 133, 0.24);
+    --color-brand-secondary-alt-alpha-40: rgba(0, 120, 133, 0.4);
+    --color-text-primary: #1c2659;
+    --color-text-muted: #6b7280;
+    --color-text-inverse: #ffffff;
+    --color-bg-surface: #f8f9fc;
+    --color-bg-elevated: #ffffff;
+    --color-bg-dark: #1c2659;
+    --color-neutral-light: #e5e5e5;
+    --theme-border-color: var(--color-neutral-light);
+    --color-feedback-success: #10b981;
+    --color-feedback-warning: #f59e0b;
+    --color-feedback-error: #ef4444;
+    --color-discount: #dc2626;
+    /*
+     * Acento y feedback para texto (AA). El secundario de marca (#5A7BAE) no cambia:
+     * en claro el acento de texto usa navy; success/warning/error de relleno con
+     * texto inverso usan estos fills más oscuros (blanco sobre #10b981 / #f59e0b / #ef4444 falla).
+     */
+    --color-accent-readable: var(--color-brand-primary);
+    --color-cta-fill: var(--color-brand-primary);
+    --color-cta-text: var(--color-text-inverse);
+    --color-feedback-success-fill: #047857;
+    --color-feedback-warning-fill: #b45309;
+    --color-danger-fill: #dc2626;
+    --color-danger-text: var(--color-text-inverse);
+
+    /* Tablas: tinte del secundario corporativo (#5A7BAE); cabecera un escalón más marcada */
+    --color-table-row-stripe: rgba(90, 123, 174, 0.16);
+    --color-table-header-bg: rgba(90, 123, 174, 0.26);
+    --color-table-header-border: rgba(90, 123, 174, 0.4);
+
+    /* Spacing scale */
+    --space-4: 4px;
+    --space-8: 8px;
+    --space-12: 12px;
+    --space-16: 16px;
+    --space-24: 24px;
+    --space-32: 32px;
+    --space-48: 48px;
+    --space-64: 64px;
+    --space-96: 96px;
+
+    /* Layout */
+    --grid-container: 1200px;
+
+    /* Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-2xl: 16px;
+    --radius-pill: 100px;
+
+    /* Elevation */
+    --elevation-1: 0 1px 3px rgba(28, 38, 89, 0.06), 0 1px 2px rgba(28, 38, 89, 0.04);
+    --elevation-2: 0 4px 6px rgba(28, 38, 89, 0.06), 0 2px 4px rgba(28, 38, 89, 0.04);
+    --elevation-3: 0 10px 15px rgba(28, 38, 89, 0.08), 0 4px 6px rgba(28, 38, 89, 0.04);
+    --elevation-4: 0 20px 25px rgba(28, 38, 89, 0.1), 0 10px 10px rgba(28, 38, 89, 0.04);
+
+    /* Dashboard charts */
+    --chart-income-bar-fill: var(--color-brand-primary);
+    --chart-income-bar-track-bg: var(--color-bg-surface);
+    --chart-income-bar-track-border: var(--color-neutral-light);
+    --chart-income-legend-dot: var(--color-brand-primary);
+    --chart-blockchain-line-stroke: var(--color-brand-secondary);
+    --chart-axis-label: var(--color-text-muted);
+    --chart-grid-line: var(--color-neutral-light);
+}
+
+.dark-theme {
+    background: #131823;
+    color: white;
+
+    /*
+     * Overrides de la paleta corporativa para tema oscuro.
+     * Los colores de marca (Navy / Secondary / Teal) son invariantes;
+     * solo cambian fondos, texto de soporte, bordes neutros y elevaciones.
+     */
+    --color-text-primary: #f3f0f0;
+    --color-text-muted: #a9b6cc;
+    --color-bg-surface: #131823;
+    --color-bg-elevated: #1b2230;
+    --color-neutral-light: rgba(255, 255, 255, 0.12);
+
+    --elevation-1: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+    --elevation-2: 0 4px 6px rgba(0, 0, 0, 0.35), 0 2px 4px rgba(0, 0, 0, 0.2);
+    --elevation-3: 0 10px 15px rgba(0, 0, 0, 0.4), 0 4px 6px rgba(0, 0, 0, 0.25);
+    --elevation-4: 0 20px 25px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.3);
+
+    --bg-color: var(--color-bg-surface);
+    --text-color: var(--color-text-primary);
+
+    --theme-border-color: rgba(255, 255, 255, 0.1);
+    --theme-btn-hover-color: var(--color-text-primary);
+    --theme-btn-color: rgba(255, 255, 255, 0.75);
+    --modal-overlay-bg-color: rgba(0, 0, 0, 0.4);
+    --modal-bg-color: var(--color-bg-elevated);
+    --bar-bg-color: var(--color-bg-elevated);
+
+    --hover-color: rgba(255, 255, 255, 0.1);
+    --selected-color: rgba(255, 255, 255, 0.2);
+
+    --switch-color: white;
+    --switch-shadow-color: rgba(0, 0, 0, 0.33);
+    --switch-shadow-toggled-color: rgba(255, 255, 255, 0.5);
+    --switch-disabled-color: gray;
+
+    --button-primary-bg: var(--color-bg-elevated);
+    --button-primary-bg-hover: var(--color-neutral-light);
+    --button-primary-text: var(--color-brand-primary);
+
+    --button-primary-gradient-start: #003366;
+    --button-primary-gradient-end: #1f477b;
+
+    --button-secondary-bg: rgba(130, 207, 255, 0.14);
+    --button-secondary-bg-hover: rgba(130, 207, 255, 0.22);
+    --button-secondary-text: #d5e3ff;
+    --button-secondary-border: rgba(130, 207, 255, 0.3);
+
+    --button-login-bg: #005cf5;
+    --button-login-bg-hover: #004ecc;
+    --button-login-text: white;
+
+    --button-danger-bg: var(--color-danger-fill);
+    --button-danger-bg-hover: #b91c1c;
+    --button-danger-text: var(--color-danger-text);
+    --button-danger-icon: var(--color-danger-text);
+
+    --button-submit-bg: green;
+    --button-submit-bg-hover: darkgreen;
+    --button-submit-text: white;
+
+    --input-bg-color: hsl(0, 0%, 7%);
+    --input-autocomplete-bg-color: black;
+
+    --user-profile-image-background: lightgray;
+
+    --success-color: var(--color-feedback-success);
+    --error-color: #f87171;
+    --warn-color: var(--color-feedback-warning);
+
+    --auth-font-headline: "Comfortaa";
+    --auth-font-body: "Comfortaa";
+    --auth-font-label: "Comfortaa";
+    --auth-font-code: "JetBrains Mono", "Consolas", monospace;
+
+    --auth-page-bg: var(--color-bg-dark);
+    --auth-page-text: var(--color-text-inverse);
+    --auth-brand-bg: var(--color-brand-primary);
+    --auth-brand-icon: var(--color-text-inverse);
+    --auth-brand-text: var(--color-text-inverse);
+    --auth-subtitle: var(--color-text-inverse);
+
+    --auth-card-bg: var(--color-bg-dark);
+    --auth-card-shadow: var(--elevation-4);
+    --auth-card-title: var(--color-text-inverse);
+    --auth-card-description: var(--color-text-inverse);
+    --auth-surface-high: var(--color-brand-primary);
+
+    --auth-label: var(--color-text-inverse);
+    --auth-muted: var(--color-text-inverse);
+    --auth-link: var(--color-text-inverse);
+    --auth-link-hover: var(--color-neutral-light);
+    --auth-divider: rgba(229, 229, 229, 0.35);
+
+    --auth-input-bg: var(--color-bg-surface);
+    --auth-input-focus-bg: var(--color-bg-elevated);
+    --auth-input-accent: var(--color-brand-secondary);
+    --auth-input-accent-muted: rgba(90, 123, 174, 0.45);
+    --auth-input-placeholder: var(--color-text-muted);
+
+    --auth-gradient-start: var(--color-brand-primary);
+    --auth-gradient-end: var(--color-brand-secondary);
+    --auth-cta-text: var(--color-text-inverse);
+
+    --auth-badge-bg: var(--color-brand-primary);
+    --auth-badge-icon: var(--color-text-inverse);
+    --auth-badge-text: var(--color-neutral-light);
+    --auth-footer: var(--color-text-inverse);
+
+    --auth-grid-dot: rgba(229, 229, 229, 0.18);
+    --auth-blob-primary: rgba(28, 38, 89, 0.28);
+    --auth-blob-secondary: rgba(90, 123, 174, 0.2);
+
+    --primary: #a7c8ff;
+    --primary-container: #1f477b;
+    --secondary: #82cfff;
+    --on-primary: #001b3c;
+    --on-surface: #f3f0f0;
+    --on-surface-variant: #a9b6cc;
+    --outline: #737780;
+    --outline-variant: rgba(195, 198, 209, 0.35);
+    --surface-container-low: #1b2230;
+    --surface-container-high: #242d3d;
+    --surface-container-lowest: #2a3548;
+
+    --color-table-row-stripe: rgba(90, 123, 174, 0.22);
+    --color-table-header-bg: rgba(90, 123, 174, 0.34);
+    --color-table-header-border: rgba(90, 123, 174, 0.48);
+
+    --color-discount: #f87171;
+    --color-feedback-error: #f87171;
+
+    /* Dashboard charts */
+    --chart-income-bar-fill: var(--color-brand-secondary);
+    --chart-income-bar-track-bg: var(--surface-container-high);
+    --chart-income-bar-track-border: var(--outline-variant);
+    --chart-income-legend-dot: var(--color-brand-secondary);
+    --chart-blockchain-line-stroke: var(--secondary);
+    --chart-axis-label: var(--on-surface-variant);
+    --chart-grid-line: var(--outline-variant);
+
+    --color-accent-readable: var(--primary);
+    --color-cta-fill: var(--primary);
+    --color-cta-text: var(--on-primary);
+    --auth-link-hover: var(--primary);
+}
+
+.light-theme {
+    background: #fbf9f8;
+    color: black;
+
+    /*
+     * Reafirma los tokens corporativos en modo claro. Los valores de :root
+     * ya son los de tema claro; redeclararlos aquí garantiza estabilidad
+     * frente a futuros overrides y permite ajustarlos si es necesario.
+     */
+    --color-text-primary: #1c2659;
+    --color-text-muted: #6b7280;
+    --color-bg-surface: #f8f9fc;
+    --color-bg-elevated: #ffffff;
+    --color-neutral-light: #e5e5e5;
+
+    --elevation-1: 0 1px 3px rgba(28, 38, 89, 0.06), 0 1px 2px rgba(28, 38, 89, 0.04);
+    --elevation-2: 0 4px 6px rgba(28, 38, 89, 0.06), 0 2px 4px rgba(28, 38, 89, 0.04);
+    --elevation-3: 0 10px 15px rgba(28, 38, 89, 0.08), 0 4px 6px rgba(28, 38, 89, 0.04);
+    --elevation-4: 0 20px 25px rgba(28, 38, 89, 0.1), 0 10px 10px rgba(28, 38, 89, 0.04);
+
+    --bg-color: #f9f9f9;
+    --text-color: black;
+
+    --theme-border-color: rgba(0, 0, 0, 0.1);
+    --theme-btn-hover-color: black;
+    --theme-btn-color: rgba(0, 0, 0, 0.75);
+    --modal-overlay-bg-color: rgba(0, 0, 0, 0.4);
+    --modal-bg-color: var(--color-bg-elevated);
+    --bar-bg-color: var(--color-bg-elevated);
+
+    --hover-color: rgba(0, 0, 0, 0.1);
+    --selected-color: rgba(0, 0, 0, 0.2);
+
+    --switch-color: black;
+    --switch-shadow-color: rgba(255, 255, 255, 0.33);
+    --switch-shadow-toggled-color: rgba(0, 0, 0, 0.5);
+    --switch-disabled-color: lightgray;
+
+    --button-primary-bg: #005cf5;
+    --button-primary-bg-hover: #004ecc;
+    --button-primary-text: white;
+
+    --button-primary-gradient-start: #001e40;
+    --button-primary-gradient-end: #003366;
+
+    --button-secondary-bg: rgba(0, 101, 141, 0.08);
+    --button-secondary-bg-hover: rgba(0, 101, 141, 0.14);
+    --button-secondary-text: #003a52;
+    --button-secondary-border: rgba(115, 119, 128, 0.28);
+
+    --button-login-bg: #1c1c25;
+    --button-login-bg-hover: #000000;
+    --button-login-text: white;
+
+    --button-danger-bg: var(--color-danger-fill);
+    --button-danger-bg-hover: #b91c1c;
+    --button-danger-text: var(--color-danger-text);
+    --button-danger-icon: var(--color-danger-text);
+
+    --button-submit-bg: green;
+    --button-submit-bg-hover: darkgreen;
+    --button-submit-text: white;
+
+    --input-bg-color: white;
+    --input-autocomplete-bg-color: lightgray;
+
+    --user-profile-image-background: lightgray;
+
+    --color-feedback-success: #047857;
+    --color-feedback-warning: #b45309;
+    --color-feedback-error: #b91c1c;
+    --success-color: var(--color-feedback-success);
+    --error-color: var(--color-feedback-error);
+    --warn-color: var(--color-feedback-warning);
+
+    --auth-font-headline: "Comfortaa";
+    --auth-font-body: "Comfortaa";
+    --auth-font-label: "Comfortaa";
+    --auth-font-code: "JetBrains Mono", "Consolas", monospace;
+
+    --auth-page-bg: var(--color-bg-surface);
+    --auth-page-text: var(--color-text-primary);
+    --auth-brand-bg: var(--color-brand-primary);
+    --auth-brand-icon: var(--color-text-inverse);
+    --auth-brand-text: var(--color-brand-primary);
+    --auth-subtitle: var(--color-text-muted);
+
+    --auth-card-bg: var(--color-bg-elevated);
+    --auth-card-shadow: var(--elevation-3);
+    --auth-card-title: var(--color-text-primary);
+    --auth-card-description: var(--color-text-muted);
+    --auth-surface-high: var(--color-bg-surface);
+
+    --auth-label: var(--color-text-primary);
+    --auth-muted: var(--color-text-muted);
+    --auth-link: var(--color-brand-primary);
+    --auth-link-hover: var(--color-brand-primary);
+    --auth-divider: rgba(229, 229, 229, 0.8);
+
+    --auth-input-bg: var(--color-bg-surface);
+    --auth-input-focus-bg: var(--color-bg-elevated);
+    --auth-input-accent: var(--color-brand-primary);
+    --auth-input-accent-muted: rgba(28, 38, 89, 0.2);
+    --auth-input-placeholder: var(--color-text-muted);
+
+    --auth-gradient-start: var(--color-brand-primary);
+    --auth-gradient-end: var(--color-brand-secondary);
+    --auth-cta-text: var(--color-text-inverse);
+
+    --auth-badge-bg: var(--color-bg-surface);
+    --auth-badge-icon: var(--color-brand-primary);
+    --auth-badge-text: var(--color-text-primary);
+    --auth-footer: var(--color-text-muted);
+
+    --auth-grid-dot: rgba(28, 38, 89, 0.08);
+    --auth-blob-primary: rgba(28, 38, 89, 0.12);
+    --auth-blob-secondary: rgba(90, 123, 174, 0.1);
+
+    --primary: #001e40;
+    --primary-container: #003366;
+    --secondary: #00658d;
+    --on-primary: #ffffff;
+    --on-surface: #1b1c1c;
+    --on-surface-variant: #43474f;
+    --outline: #737780;
+    --outline-variant: #c3c6d1;
+    --surface-container-low: var(--color-bg-elevated);
+    --surface-container-high: var(--color-bg-elevated);
+    --surface-container-lowest: #ffffff;
+
+    --color-table-row-stripe: rgba(90, 123, 174, 0.16);
+    --color-table-header-bg: rgba(90, 123, 174, 0.26);
+    --color-table-header-border: rgba(90, 123, 174, 0.4);
+
+    --color-discount: #b91c1c;
+
+    --chart-income-bar-fill: var(--color-brand-primary);
+    --chart-income-bar-track-bg: var(--color-bg-surface);
+    --chart-income-bar-track-border: var(--color-neutral-light);
+    --chart-income-legend-dot: var(--color-brand-primary);
+    --chart-blockchain-line-stroke: var(--color-brand-secondary);
+    --chart-axis-label: var(--color-text-muted);
+    --chart-grid-line: var(--color-neutral-light);
+
+    --color-accent-readable: var(--color-brand-primary);
+    --color-cta-fill: var(--color-brand-primary);
+    --color-cta-text: var(--color-text-inverse);
+}
+
+.dark-theme a:not(.btn) {
+    color: var(--color-text-inverse);
+}
+
+.dark-theme a:not(.btn):visited {
+    color: var(--color-text-inverse);
+}
+
+.light-theme .blue-icon,
+.dark-theme .blue-icon {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.light-theme .blue-icon {
+    color: var(--color-brand-primary);
+}
+
+.dark-theme .blue-icon {
+    color: var(--color-text-inverse);
+}

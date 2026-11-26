@@ -1,0 +1,46 @@
+/* Unified status / state badges — use with utils/status-badge.ts */
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 24px;
+    padding: var(--space-4) var(--space-8);
+    border-radius: 100px;
+    border: 1px solid var(--color-neutral-light);
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    background: var(--color-bg-surface);
+    color: var(--color-text-primary);
+    white-space: nowrap;
+}
+
+/* Inverse text on AA fills. Light feedback tokens as text fail ~2.0–3.6:1 (WCAG 1.4.3). */
+.status-badge--success {
+    color: var(--color-text-inverse);
+    background: var(--color-feedback-success-fill);
+    border-color: var(--color-feedback-success-fill);
+}
+
+.status-badge--warning {
+    color: var(--color-text-inverse);
+    background: var(--color-feedback-warning-fill);
+    border-color: var(--color-feedback-warning-fill);
+}
+
+.status-badge--error {
+    color: var(--color-danger-text);
+    background: var(--color-danger-fill);
+    border-color: var(--color-danger-fill);
+}
+
+.status-badge--muted {
+    color: var(--color-text-muted);
+    border-color: var(--color-neutral-light);
+}
+
+.status-badge--info {
+    color: var(--color-accent-readable);
+    border-color: color-mix(in srgb, var(--color-brand-secondary) 38%, transparent);
+}

@@ -1,0 +1,306 @@
+.table-feedback {
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+/* Pattern 6 — table card toolbar (tabs + optional collapsible filters) */
+.table-card-toolbar-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+}
+
+.table-card-toolbar__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-8);
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.table-card-toolbar__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-8);
+    flex: 0 0 auto;
+    margin-left: auto;
+}
+
+.table-card-toolbar__tabs:has(.catalog-search-bar) {
+    flex: 0 1 auto;
+    width: auto;
+    max-width: 100%;
+}
+
+.table-card-toolbar-tab {
+    min-height: 44px;
+    border: 1px solid var(--color-neutral-light);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-surface);
+    color: var(--color-text-primary);
+    padding: var(--space-8) var(--space-12);
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.table-card-toolbar-tab.active {
+    border-color: var(--color-brand-primary);
+    background: var(--color-brand-primary);
+    color: var(--color-text-inverse);
+}
+
+.table-card-toolbar-tab:focus-visible,
+.table-card-toolbar-tab:disabled {
+    cursor: default;
+}
+
+.table-card-toolbar-tab:focus-visible {
+    outline: 2px solid var(--color-brand-secondary);
+    outline-offset: 2px;
+}
+
+.table-card-toolbar-tab:disabled {
+    opacity: 0.6;
+}
+
+.table-card-toolbar-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: var(--space-8);
+    padding: var(--space-12);
+    border: 1px solid var(--color-neutral-light);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-surface);
+}
+
+.toolbar-apply-btn,
+.toolbar-clear-btn {
+    min-height: 44px;
+}
+
+.toolbar-clear-btn {
+    order: 10;
+}
+
+.toolbar-apply-btn {
+    order: 11;
+}
+
+.toolbar-collapse-btn {
+    min-height: 44px;
+}
+
+.toolbar-plan-filter {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    min-width: 180px;
+}
+
+.toolbar-plan-filter--narrow {
+    min-width: 120px;
+}
+
+.toolbar-plan-select--price {
+    width: 100px;
+}
+
+.toolbar-plan-label {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.toolbar-plan-select {
+    min-height: 44px;
+    border: 1px solid var(--color-neutral-light);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-elevated);
+    color: var(--color-text-primary);
+    padding: var(--space-8) var(--space-12);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    .table-card-toolbar-filters {
+        gap: var(--space-12);
+    }
+
+    .toolbar-plan-filter {
+        flex: 1 1 calc(50% - var(--space-8));
+        min-width: 0;
+    }
+
+    .toolbar-plan-filter--narrow {
+        min-width: 0;
+    }
+
+    .toolbar-plan-select--price {
+        width: 100%;
+    }
+
+    .toolbar-apply-btn,
+    .toolbar-clear-btn {
+        min-width: 0;
+        flex: 1 1 calc(50% - var(--space-8));
+    }
+
+    .table .actions-cell {
+        min-width: 0;
+    }
+
+    .table .action-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+.toolbar-plan-select:focus-visible,
+.toolbar-action-btn:focus-visible {
+    outline: 2px solid var(--color-brand-secondary);
+    outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+    .table-card-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .table-card-toolbar__tabs {
+        width: 100%;
+    }
+
+    .table-card-toolbar__actions {
+        flex: 1 1 auto;
+        margin-left: 0;
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .table-card-toolbar__actions .btn {
+        width: auto;
+        flex: 0 0 auto;
+    }
+
+    .table-card-toolbar-filters {
+        justify-content: flex-start;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .toolbar-plan-filter {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .toolbar-plan-select,
+    .toolbar-action-btn {
+        width: 100%;
+    }
+
+    .toolbar-apply-btn,
+    .toolbar-clear-btn {
+        width: auto;
+        flex: 1 1 calc(50% - var(--space-4));
+        min-width: 0;
+        white-space: normal;
+        text-align: center;
+    }
+}
+
+.catalog-state {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--color-text-muted);
+}
+
+/* Dashboard list tables — extend global .table (tables.css) */
+.table .actions-cell {
+    min-width: 180px;
+}
+
+.table .action-button {
+    min-height: 44px;
+    padding: var(--space-8) var(--space-12);
+}
+
+.table .item-name {
+    font-weight: 600;
+}
+
+.dashboard-actions-inline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-8);
+}
+
+.table td.text-right .dashboard-actions-inline {
+    justify-content: flex-end;
+}
+
+@media (max-width: 1024px) {
+    .table.table-stack .actions-cell {
+        min-width: 0;
+    }
+}
+
+.dark-theme .table-card-toolbar-tab:not(.active) {
+    background: var(--color-bg-surface);
+    color: var(--color-text-primary);
+    border-color: var(--theme-border-color);
+}
+
+.dark-theme .table-card-toolbar-tab:not(.active):hover {
+    background: var(--hover-color);
+    color: var(--color-text-primary);
+    border-color: var(--color-brand-secondary);
+}
+
+.dark-theme .table-card-toolbar-tab.active,
+.dark-theme .table-card-toolbar-tab.active:hover {
+    border-color: var(--color-cta-fill);
+    background: var(--color-cta-fill);
+    color: var(--color-cta-text);
+}
+
+.dark-theme .table-card-toolbar-filters {
+    background: var(--color-bg-elevated);
+}
+
+.dark-theme .toolbar-plan-select {
+    color-scheme: dark;
+    border-color: var(--color-brand-secondary);
+    background: var(--color-bg-elevated);
+    color: var(--color-text-primary);
+}
+
+.dark-theme .toolbar-plan-select option {
+    background: var(--color-bg-elevated);
+    color: var(--color-text-primary);
+}
+
+.dark-theme .toolbar-plan-select:focus-visible {
+    outline-color: var(--color-brand-secondary);
+}
+
+.dark-theme input.toolbar-plan-select[type="date"] {
+    color-scheme: dark;
+}
+
+.dark-theme input.toolbar-plan-select[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(1) brightness(1.4);
+}

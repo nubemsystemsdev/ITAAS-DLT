@@ -1,0 +1,392 @@
+/* Tokens Page Layout */
+
+.tokens-page {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-32);
+}
+
+.tokens-grid {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: var(--space-24);
+    align-items: stretch;
+}
+
+@media (max-width: 1024px) {
+    .tokens-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-16);
+    }
+
+    .tokens-page {
+        gap: var(--space-24);
+    }
+}
+
+@media (max-width: 640px) {
+    .tokens-page {
+        gap: var(--space-16);
+    }
+
+    .balance-amount {
+        font-size: 32px;
+    }
+
+    .balance-amount-row {
+        flex-wrap: wrap;
+    }
+}
+
+/* ── TokenBalance ──────────────────────────────────────────────────────────── */
+
+.balance-card {
+    background: linear-gradient(145deg, var(--color-bg-dark) 0%, var(--color-brand-primary) 100%);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--elevation-3);
+    padding: var(--space-24);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.balance-card-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    height: 100%;
+}
+
+.balance-card-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    margin: 0 0 var(--space-8) 0;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-text-inverse);
+    opacity: 0.6;
+}
+
+.balance-amount-row {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-8);
+}
+
+.balance-amount {
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--color-text-inverse);
+    line-height: 1;
+}
+
+.balance-eur {
+    margin: 0 0 var(--space-24) 0;
+    font-size: 14px;
+    color: var(--color-text-inverse);
+    opacity: 0.7;
+}
+
+.balance-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-12);
+    flex-wrap: wrap;
+    margin-top: auto;
+}
+
+@media (max-width: 1024px) {
+    .balance-card {
+        padding: var(--space-16);
+        height: auto;
+    }
+
+    .balance-amount {
+        font-size: 40px;
+    }
+
+    .balance-actions {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .balance-actions .btn {
+        width: auto;
+        min-width: 220px;
+    }
+}
+
+/* ── TokenActiveRules ──────────────────────────────────────────────────────── */
+
+.active-rules-card {
+    background: var(--color-bg-elevated);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--elevation-1);
+    border: 1px solid var(--color-neutral-light);
+    padding: var(--space-24);
+    position: relative;
+}
+
+.active-rules-card h2 {
+    margin: 0 0 var(--space-16) 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.rules-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+}
+
+.rules-columns--single {
+    grid-template-columns: 1fr;
+}
+
+.rules-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+}
+
+.rules-empty {
+    grid-column: 1 / -1;
+    font-size: 14px;
+    color: var(--color-text-muted);
+    text-align: center;
+    padding: var(--space-16) 0;
+}
+
+.rule-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-12);
+}
+
+.rule-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--space-32);
+    height: var(--space-32);
+    min-width: var(--space-32);
+    border-radius: 50%;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-neutral-light);
+    color: var(--color-text-muted);
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+.rule-content {
+    flex: 1;
+}
+
+.rule-name {
+    margin: 0 0 var(--space-4) 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.rule-description {
+    margin: 0;
+    font-size: 14px;
+    color: var(--color-text-muted);
+}
+
+@media (max-width: 640px) {
+    .rules-columns {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 1024px) {
+    .active-rules-card {
+        padding: var(--space-16);
+    }
+}
+
+/* ── TokenHistory ──────────────────────────────────────────────────────────── */
+
+.history-card {
+    background: var(--color-bg-elevated);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--elevation-1);
+    border: 1px solid var(--color-neutral-light);
+    padding: var(--space-24);
+    position: relative;
+}
+
+.history-card h2 {
+    margin: 0 0 var(--space-16) 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.token-history-table-wrap {
+    width: 100%;
+}
+
+.token-history-table {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.history-card .table thead th {
+    padding: var(--space-12);
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+.history-card .table tbody td {
+    padding: var(--space-12);
+    border-top: 1px solid var(--color-neutral-light);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.history-card .table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.history-card .table tbody tr:hover {
+    background: var(--color-bg-surface);
+}
+
+/* Column widths: Date | Event | Concept | Amount | TX Hash */
+.history-card .col-date {
+    width: 16%;
+}
+
+.history-card .col-event {
+    width: 16%;
+}
+
+.history-card .col-concept {
+    width: 32%;
+}
+
+.history-card .col-amount {
+    width: 12%;
+}
+
+.history-card .col-hash {
+    width: 24%;
+}
+
+.date-cell {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+}
+
+.concept-cell {
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--color-text-primary);
+}
+
+.token-history-concept {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.hash-cell {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.hash-cell code {
+    background: var(--color-bg-surface);
+    padding: var(--space-4) var(--space-8);
+    border-radius: var(--radius-sm);
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-size: 13px;
+    color: var(--color-text-primary);
+}
+
+.hash-cell code:hover {
+    background: var(--color-neutral-light);
+}
+
+.amount-cell {
+    font-weight: 600;
+}
+
+.amount-positive {
+    color: var(--color-feedback-success);
+}
+
+.amount-negative {
+    color: var(--color-feedback-error);
+}
+
+.amount-neutral {
+    color: var(--color-text-muted);
+}
+
+.table-feedback {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-style: italic;
+    padding: var(--space-32) var(--space-16) !important;
+}
+
+@media (max-width: 1024px) {
+    .history-card {
+        padding: var(--space-16);
+    }
+
+    .token-history-table.table-stack tbody td.table-stack-row-primary,
+    .token-history-table.table-stack tbody td.token-history-cell--event {
+        border-top: none;
+    }
+
+    .token-history-table.table-stack .token-history-cell--event {
+        order: 2;
+        flex: 0 0 auto;
+        flex-direction: row;
+        align-items: center;
+        align-self: flex-start;
+        margin-left: auto;
+    }
+
+    .token-history-table.table-stack .token-history-cell--event::before {
+        display: none;
+    }
+
+    .token-history-table.table-stack .hash-cell code {
+        white-space: normal;
+        overflow-wrap: anywhere;
+        word-break: break-all;
+        text-overflow: clip;
+    }
+}

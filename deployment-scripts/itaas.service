@@ -1,0 +1,21 @@
+[Unit]
+Description=ITAAS application service
+After=network.target auditd.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/npm start
+User=<deploy-user>
+Group=<deploy-user>
+WorkingDirectory=<repo-path>/web-application/backend
+Environment=NODE_ENV=production
+LimitNOFILE=infinity
+LimitCORE=infinity
+KillMode=control-group
+StandardInput=null
+StandardOutput=syslog
+StandardError=syslog
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

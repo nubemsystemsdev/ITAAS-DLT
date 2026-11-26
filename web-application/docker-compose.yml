@@ -1,0 +1,143 @@
+services:
+
+  # In-repo Cyberchain test node. Development only: do not use this service as a
+  # production chain. Do not start cyberchain-test-node/docker-compose.yml at the
+  # same time; both mounts use IBFT-Network/Node-1/data.
+  platform_cyberchain:
+    hostname: cyberchain
+    ports:
+      - '127.0.0.1:8547:8545'
+    networks:
+      - platform_network
+    image: 'airdlt/cyberchain:latest'
+    user: "root:root"
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - BESU_USER_NAME=root
+    volumes:
+      - ../cyberchain-test-node/IBFT-Network/Node-1/data:/opt/besu/database
+      - ../cyberchain-test-node/IBFT-Network/Node-1/config:/etc/besu/config
+    command:
+      --data-path=/opt/besu/database
+      --genesis-file=/etc/besu/config/genesis.json
+      --node-private-key-file=/etc/besu/config/key
+      --node-private-key-mldsa-file=/etc/besu/config/keymldsa
+      --node-public-key-mldsa-file=/etc/besu/config/keymldsa.pub
+      --rpc-http-max-active-connections=999999
+      --rpc-http-enabled
+      --rpc-http-host=0.0.0.0
+      --rpc-http-api=ETH,NET,IBFT,ADMIN,WEB3
+      --host-allowlist="*"
+      --rpc-http-cors-origins="all"
+      --ping-enabled
+      --ping-url=${PING_URL:-http://host.docker.internal/api/v1/pingnodes}
+      --ban-list-url=${BAN_LIST_URL:-http://host.docker.internal/api/v1/banlist}
+      --geo-service-url=${GEO_LOCATION_SERVICE:-http://ip-api.com/json/@IP}
+      --logging=${LOG_MODE:-INFO}
+
+  platform_redis:
+    hostname: redis
+    image: 'redis:latest'
+    networks:
+      - platform_network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  platform_database:
+    hostname: database
+    image: mongo
+    networks:
+      - platform_network
+    restart: unless-stopped
+    volumes:
+      - ./data/mongo:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "quit(db.adminCommand({ ping: 1 }).ok ? 0 : 1)"]
+      interval: 5s
+      timeout: 4s
+      retries: 12
+
+  # Development only. Production Keycloak uses start mode. See keycloak/README.md.
+  platform_keycloak:
+    hostname: keycloak
+    image: quay.io/keycloak/keycloak:26.0
+    command: start-dev --import-realm
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      KC_HTTP_ENABLED: "true"
+      KC_HOSTNAME_STRICT: "false"
+      KC_HOSTNAME_STRICT_HTTPS: "false"
+      KC_HTTP_PORT: 8080
+      KC_HEALTH_ENABLED: "true"
+    ports:
+      - '127.0.0.1:8081:8080'
+    networks:
+      - platform_network
+    restart: unless-stopped
+    volumes:
+      - ./keycloak/realm-export.json:/opt/keycloak/data/import/itaas-dlt-realm.json:ro
+      - ./keycloak/theme/nubem:/opt/keycloak/themes/nubem:ro
+
+  platform_app:
+    depends_on:
+      platform_database:
+        condition: service_healthy
+      platform_redis:
+        condition: service_healthy
+      platform_cyberchain:
+        condition: service_started
+    hostname: platform
+    image: web-application-name
+    build:
+      context: .
+    ports:
+      - '127.0.0.1:80:80'
+      - '127.0.0.1:443:443'
+    networks:
+      - platform_network
+    restart: unless-stopped
+    volumes:
+      - ./data/app:/backend/data
+    # Deploy writes CONTRACT_* here; container must load it (not only host-local Node)
+    env_file:
+      - ./backend/.env
+    environment:
+      - APP_NAME=Nubemsystems
+      - VITE__PLATFORM_NAME=Nubemsystems
+      - VITE__PLATFORM_DESCRIPTION=Nubemsystems Platform
+      - APP_VERSION=1.0.0
+      - RUN_TASKS=YES
+      - BACKEND_EXTERNAL_URI=http://localhost
+      - FRONTEND_EXTERNAL_URI=http://localhost
+      - ALLOWED_ORIGINS=http://localhost
+      - VITE__API_SERVER_HOST=/
+      - SERVE_FRONTEND=YES
+      - WORKERS_NUMBER=1
+      - LOG_REQUESTS=YES
+      - LOG_INFO=YES
+      - LOG_DEBUG=NO
+      - DB_TYPE=MONGO
+      - DB_MONGO_URL=mongodb://platform_database:27017/itaas
+      - FILE_STORAGE_MODE=FS
+      - FILE_STORAGE_FS_PATH=/backend/data
+      - FILE_STORAGE_PRIVATE_SECRET=${FILE_STORAGE_PRIVATE_SECRET:-secret}
+      - FILE_STORAGE_SERVER_URL=http://localhost/static/
+      # Development-only credentials. Replace them outside this local stack.
+      - INITIAL_USER_NAME=admin
+      - INITIAL_USER_PASSWORD=password
+      - REDIS_ENABLED=YES
+      - REDIS_HOST=platform_redis
+      - REDIS_PORT=6379
+      - BLOCKCHAIN_NODE_PROTOCOL=http
+      - BLOCKCHAIN_NODE_RPC_URL=http://platform_cyberchain:8545
+      - BLOCKCHAIN_SYNC=YES
+
+networks:
+  platform_network:

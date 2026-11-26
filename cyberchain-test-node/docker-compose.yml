@@ -1,0 +1,50 @@
+version: '3.7'
+
+services:
+
+  # Blockchain
+
+  test_node:
+    hostname: test-node
+    ports:
+      - '${BLOCKCHAIN_RPC_PORT:-8545}:8545'
+      - '30303'
+      - '30303/udp'
+    networks:
+      cyberchain_test_net:
+          ipv4_address: 172.5.0.111
+    # select the image pushed to docker yoy want to use
+    image: 'airdlt/cyberchain:latest'
+    user: "root:root"
+    restart: unless-stopped
+    volumes:
+      - "./IBFT-Network/Node-1/data:/opt/besu/database"
+      - "./IBFT-Network/Node-1/config:/etc/besu/config"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - BESU_USER_NAME=root
+    command: 
+      --data-path=/opt/besu/database
+      --genesis-file=/etc/besu/config/genesis.json
+      --node-private-key-file=/etc/besu/config/key
+      --node-private-key-mldsa-file=/etc/besu/config/keymldsa
+      --node-public-key-mldsa-file=/etc/besu/config/keymldsa.pub
+      --rpc-http-max-active-connections=999999
+      --rpc-http-enabled 
+      --rpc-http-host=0.0.0.0
+      --rpc-http-api=ETH,NET,IBFT,ADMIN,WEB3
+      --host-allowlist="*" 
+      --rpc-http-cors-origins="all"
+      --ping-enabled
+      --ping-url=${PING_URL:-http://host.docker.internal/api/v1/pingnodes}
+      --ban-list-url=${BAN_LIST_URL:-http://host.docker.internal/api/v1/banlist}
+      --geo-service-url=${GEO_LOCATION_SERVICE:-http://ip-api.com/json/@IP}
+      --logging=${LOG_MODE:-INFO}
+
+networks:
+  cyberchain_test_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.5.0.0/24

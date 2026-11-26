@@ -1,0 +1,237 @@
+/* Compact styles for OrganizationMemberPage (compact list view) */
+
+.org-member-page {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-24);
+    padding: var(--space-24);
+    background: var(--color-bg-surface);
+    color: var(--color-text-primary);
+}
+
+.org-member-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-16);
+}
+
+.org-member-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    min-width: 0;
+}
+
+.org-member-name {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    color: var(--color-text-primary);
+}
+
+.org-member-joined {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--color-text-muted);
+}
+
+.org-member-header .btn {
+    flex-shrink: 0;
+}
+
+.license-list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+}
+
+.license-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-12);
+    padding: var(--space-16);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-neutral-light);
+    background: var(--color-bg-elevated);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--elevation-1);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.license-info-left {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    gap: var(--space-4);
+}
+
+.license-info-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: var(--space-4);
+    flex-shrink: 0;
+    text-align: right;
+}
+
+.license-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: var(--radius-md);
+    color: var(--color-text-inverse);
+    font-size: 16px;
+    font-weight: 800;
+    flex-shrink: 0;
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-text-inverse) 18%, transparent);
+}
+
+.license-name {
+    color: var(--color-text-primary);
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 800;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.license-meta {
+    display: flex;
+    gap: var(--space-8);
+    align-items: center;
+    flex-wrap: wrap;
+    color: var(--color-text-muted);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.license-meta strong {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-4) var(--space-8);
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+}
+
+.license-status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4) var(--space-8);
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.license-item:hover {
+    box-shadow: var(--elevation-2);
+}
+
+/* Icon tones */
+.license-tone-1 {
+    background: var(--color-brand-primary);
+}
+
+.license-tone-2 {
+    background: var(--color-cta-fill);
+    color: var(--color-cta-text);
+}
+
+.license-tone-3 {
+    background: var(--color-brand-secondary-alt);
+}
+
+.license-tone-4 {
+    background: var(--color-feedback-success-fill);
+}
+
+.license-tone-5 {
+    background: var(--color-feedback-warning-fill);
+}
+
+.license-tone-6 {
+    background: var(--color-danger-fill);
+}
+
+/* Status badges: filled chips with inverse text (same AA pattern as status-badges.css) */
+.license-status-badge.license-tone-4 {
+    color: var(--color-text-inverse);
+    background: var(--color-feedback-success-fill);
+    border-color: var(--color-feedback-success-fill);
+}
+
+.license-status-badge.license-tone-6 {
+    color: var(--color-danger-text);
+    background: var(--color-danger-fill);
+    border-color: var(--color-danger-fill);
+}
+
+.license-assigned {
+    color: var(--color-text-muted);
+    font-size: 14px;
+    line-height: 20px;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Button icon spacing and color */
+.licenses-action-row .btn i {
+    margin-right: var(--space-8);
+    color: inherit;
+    font-size: 1rem;
+}
+
+@media (max-width: 640px) {
+    .org-member-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .org-member-header .btn {
+        width: 100%;
+    }
+
+    .license-item {
+        flex-wrap: wrap;
+        gap: var(--space-8);
+        padding: var(--space-12);
+        align-items: flex-start;
+    }
+
+    .license-icon {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        font-size: 16px;
+    }
+
+    .license-meta {
+        font-size: 14px;
+    }
+
+    .license-info-right {
+        flex: 1 1 100%;
+        align-items: flex-start;
+        text-align: left;
+    }
+}

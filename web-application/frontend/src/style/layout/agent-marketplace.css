@@ -1,0 +1,188 @@
+.agent-marketplace-card {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: var(--space-16);
+}
+
+.agent-marketplace-toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+}
+
+.agent-marketplace-toolbar-head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    width: 100%;
+}
+
+.agent-marketplace-search {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    min-height: 44px;
+    width: 100%;
+    padding: 0 var(--space-12);
+    border: 1px solid var(--color-neutral-light);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-elevated);
+    color: var(--color-text-muted);
+}
+
+.agent-marketplace-search:focus-within {
+    border-color: var(--color-brand-secondary);
+    box-shadow:
+        0 0 0 2px var(--color-bg-elevated),
+        0 0 0 4px var(--color-brand-secondary-alpha-35);
+}
+
+.agent-marketplace-search__input {
+    width: 100%;
+    min-height: 42px;
+    border: none;
+    background: transparent;
+    color: var(--color-text-primary);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.agent-marketplace-search__input:focus {
+    outline: none;
+}
+
+.agent-marketplace-card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-8);
+    padding-right: calc(44px + var(--space-8));
+}
+
+.agent-marketplace-card .catalog-user-entry-card {
+    position: relative;
+}
+
+.agent-marketplace-card .agent-marketplace-favorite-btn {
+    position: absolute;
+    top: var(--space-16);
+    right: var(--space-16);
+    z-index: 1;
+}
+
+.agent-marketplace-card-head .entry-main-title {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.agent-marketplace-favorite-btn {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.agent-marketplace-favorite-btn:hover,
+.agent-marketplace-favorite-btn.is-active {
+    color: var(--color-feedback-error);
+}
+
+.agent-marketplace-favorite-btn:focus-visible {
+    outline: 2px solid var(--color-brand-secondary);
+    outline-offset: 2px;
+}
+
+.agent-marketplace-rating-line {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin: 0;
+    color: var(--color-text-primary);
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+}
+
+.agent-marketplace-rating-line i {
+    color: var(--color-feedback-warning);
+}
+
+.agent-marketplace-rating-reviews {
+    color: var(--color-text-muted);
+    font-weight: 400;
+}
+
+.agent-marketplace-card .entry-main-description {
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+}
+
+.dark-theme .agent-marketplace-search {
+    background: var(--surface-container-high);
+    border-color: var(--color-neutral-light);
+}
+
+.dark-theme .agent-marketplace-search__input {
+    color: var(--color-text-inverse);
+}
+
+.dark-theme .agent-marketplace-rating-line {
+    color: var(--color-text-inverse);
+}
+
+.dark-theme .agent-marketplace-rating-reviews {
+    color: var(--on-surface-variant);
+}
+
+/* Marketplace card enhancements — capabilities, price */
+.entry-capability-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+
+.entry-capability-tags .tag {
+    padding: 1px 4px;
+    border-radius: var(--radius-sm);
+    background: var(--color-bg-surface);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-neutral-light);
+    font-size: 11px;
+    line-height: 14px;
+}
+
+.entry-price-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-4);
+}
+
+.agent-marketplace-card .entry-price {
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.agent-marketplace-card .entry-status-label {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+.agent-marketplace-pagination {
+    margin-top: var(--space-16);
+    padding: var(--space-12) 0 var(--space-4);
+}
+
+.agent-marketplace-pagination .pagination {
+    margin-top: 0;
+}

@@ -1,0 +1,328 @@
+{
+  "id": "itaas-dlt",
+  "realm": "itaas-dlt",
+  "displayName": "ITAAS DLT",
+  "loginTheme": "nubem",
+  "emailTheme": "nubem",
+  "internationalizationEnabled": true,
+  "supportedLocales": ["en", "es"],
+  "defaultLocale": "en",
+  "enabled": true,
+  "sslRequired": "external",
+  "registrationAllowed": true,
+  "verifyEmail": true,
+  "registrationEmailAsUsername": false,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": true,
+  "editUsernameAllowed": true,
+  "bruteForceProtected": true,
+  "roles": {
+    "realm": [
+      {
+        "name": "user",
+        "description": "Default marketplace user",
+        "composite": false,
+        "clientRole": false
+      },
+      {
+        "name": "admin",
+        "description": "Platform administrator",
+        "composite": false,
+        "clientRole": false
+      },
+      {
+        "name": "default-roles-itaas-dlt",
+        "description": "${role_default-roles}",
+        "composite": true,
+        "composites": {
+          "realm": ["user"],
+          "client": {
+            "account": ["manage-account", "view-profile"]
+          }
+        },
+        "clientRole": false
+      }
+    ],
+    "client": {
+      "account": [
+        {
+          "name": "manage-account",
+          "description": "${role_manage-account}",
+          "composite": true,
+          "composites": {
+            "client": {
+              "account": ["manage-account-links"]
+            }
+          },
+          "clientRole": true
+        },
+        {
+          "name": "manage-account-links",
+          "description": "${role_manage-account-links}",
+          "composite": false,
+          "clientRole": true
+        },
+        {
+          "name": "view-profile",
+          "description": "${role_view-profile}",
+          "composite": false,
+          "clientRole": true
+        },
+        {
+          "name": "view-applications",
+          "description": "${role_view-applications}",
+          "composite": false,
+          "clientRole": true
+        },
+        {
+          "name": "view-consent",
+          "description": "${role_view-consent}",
+          "composite": false,
+          "clientRole": true
+        },
+        {
+          "name": "manage-consent",
+          "description": "${role_manage-consent}",
+          "composite": true,
+          "composites": {
+            "client": {
+              "account": ["view-consent"]
+            }
+          },
+          "clientRole": true
+        },
+        {
+          "name": "view-groups",
+          "description": "${role_view-groups}",
+          "composite": false,
+          "clientRole": true
+        },
+        {
+          "name": "delete-account",
+          "description": "${role_delete-account}",
+          "composite": false,
+          "clientRole": true
+        }
+      ]
+    }
+  },
+  "defaultRole": {
+    "name": "default-roles-itaas-dlt",
+    "description": "${role_default-roles}",
+    "composite": true,
+    "clientRole": false
+  },
+  "authenticationFlows": [
+    {
+      "id": "e1f2a3b4-c5d6-4789-e012-3456789abcde",
+      "alias": "deny-account-console",
+      "description": "Blocks Account Console UI. Marketplace self-service stays in-app; Account REST API (client account) remains available.",
+      "providerId": "basic-flow",
+      "topLevel": true,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "deny-access-authenticator",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 0,
+          "autheticatorFlow": false,
+          "userSetupAllowed": false
+        }
+      ]
+    }
+  ],
+  "clientScopeMappings": {
+    "account": [
+      {
+        "client": "account-console",
+        "roles": ["manage-account", "view-groups"]
+      }
+    ]
+  },
+  "clients": [
+    {
+      "id": "f0a1b2c3-d4e5-4678-a012-000000000001",
+      "clientId": "account",
+      "name": "${client_account}",
+      "rootUrl": "${authBaseUrl}",
+      "baseUrl": "/realms/itaas-dlt/account/",
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "publicClient": true,
+      "bearerOnly": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "frontchannelLogout": false,
+      "protocol": "openid-connect",
+      "redirectUris": ["/realms/itaas-dlt/account/*"],
+      "webOrigins": [],
+      "attributes": {
+        "post.logout.redirect.uris": "+"
+      },
+      "fullScopeAllowed": false,
+      "defaultClientScopes": ["web-origins", "acr", "profile", "roles", "email"],
+      "optionalClientScopes": ["address", "phone", "offline_access", "microprofile-jwt"]
+    },
+    {
+      "id": "f0a1b2c3-d4e5-4678-a012-000000000002",
+      "clientId": "account-console",
+      "name": "${client_account-console}",
+      "rootUrl": "${authBaseUrl}",
+      "baseUrl": "/realms/itaas-dlt/account/",
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "publicClient": true,
+      "bearerOnly": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "frontchannelLogout": false,
+      "protocol": "openid-connect",
+      "redirectUris": ["/realms/itaas-dlt/account/*"],
+      "webOrigins": [],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "+"
+      },
+      "authenticationFlowBindingOverrides": {
+        "browser": "e1f2a3b4-c5d6-4789-e012-3456789abcde"
+      },
+      "fullScopeAllowed": false,
+      "protocolMappers": [
+        {
+          "id": "f0a1b2c3-d4e5-4678-a012-000000000003",
+          "name": "audience resolve",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-resolve-mapper",
+          "consentRequired": false,
+          "config": {}
+        }
+      ],
+      "defaultClientScopes": ["web-origins", "acr", "profile", "roles", "email"],
+      "optionalClientScopes": ["address", "phone", "offline_access", "microprofile-jwt"]
+    },
+    {
+      "id": "a1b2c3d4-e5f6-4789-a012-3456789abcde",
+      "clientId": "itaas-dlt",
+      "name": "ITAAS DLT Marketplace",
+      "description": "Marketplace frontend and backend (OIDC Authorization Code)",
+      "enabled": true,
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "itaas-dlt-dev-secret",
+      "redirectUris": [
+        "http://localhost/callbacks/keycloak",
+        "http://localhost:8080/callbacks/keycloak"
+      ],
+      "webOrigins": [
+        "http://localhost",
+        "http://localhost:8080",
+        "+"
+      ],
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "frontchannelLogout": true,
+      "protocol": "openid-connect",
+      "attributes": {
+        "post.logout.redirect.uris": "http://localhost:8080/login##http://localhost/login"
+      },
+      "fullScopeAllowed": true,
+      "defaultClientScopes": [
+        "web-origins",
+        "acr",
+        "profile",
+        "roles",
+        "email",
+        "basic"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ]
+    },
+    {
+      "id": "b2c3d4e5-f6a7-4890-b123-456789abcdef",
+      "clientId": "flowise",
+      "name": "Flowise",
+      "description": "Flowise admin UI SSO (shared realm)",
+      "enabled": true,
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "flowise-dev-secret",
+      "redirectUris": [
+        "http://localhost:3000/*",
+        "http://localhost:3000/auth/callback",
+        "http://localhost:3000/api/v1/oauth2-credential/callback"
+      ],
+      "webOrigins": [
+        "http://localhost:3000",
+        "+"
+      ],
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "frontchannelLogout": true,
+      "protocol": "openid-connect",
+      "fullScopeAllowed": true,
+      "defaultClientScopes": [
+        "web-origins",
+        "acr",
+        "profile",
+        "roles",
+        "email",
+        "basic"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ],
+      "protocolMappers": [
+        {
+          "id": "d4e5f6a7-b8c9-4a01-d345-678901abcdef",
+          "name": "flowise-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "flowise",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": "c3d4e5f6-a7b8-4901-c234-567890abcdef",
+      "username": "service-account-itaas-dlt",
+      "enabled": true,
+      "emailVerified": false,
+      "serviceAccountClientId": "itaas-dlt",
+      "clientRoles": {
+        "realm-management": [
+          "manage-users",
+          "view-users",
+          "query-users",
+          "view-realm",
+          "manage-realm",
+          "view-clients",
+          "manage-clients"
+        ]
+      }
+    }
+  ]
+}

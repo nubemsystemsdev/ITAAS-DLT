@@ -1,0 +1,464 @@
+/* Constrain dialog to viewport and make only the body scroll */
+.modal-dialog {
+    max-height: calc(100dvh - var(--space-32));
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+:deep(.modal-body) {
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+}
+
+/* Search input with clear button */
+.search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-input-wrapper .form-control {
+    padding-right: 2.25rem;
+}
+
+.search-clear-btn {
+    position: absolute;
+    right: var(--space-8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    border-radius: var(--radius-sm);
+    transition:
+        color 0.15s,
+        background 0.15s;
+}
+
+.search-clear-btn:hover {
+    color: var(--color-text-primary);
+    background: var(--hover-color, rgba(0, 0, 0, 0.06));
+}
+
+.catalog-create-status-row--plan {
+    margin-top: var(--space-16);
+}
+
+/* Components section */
+.components-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    margin-top: var(--space-8);
+    padding-top: var(--space-16);
+    border-top: 1px solid var(--color-neutral-light);
+}
+
+.components-section-title,
+.component-state-text {
+    margin: 0;
+    font-size: 14px;
+}
+
+.components-section-title {
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.components-required {
+    color: var(--color-feedback-error);
+    margin-left: var(--space-4);
+}
+
+.components-section-hint,
+.components-added-title {
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--color-text-muted);
+}
+
+.components-added-title {
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.component-browse-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-8);
+}
+
+.component-browse-filter {
+    min-height: 44px;
+    padding: var(--space-8) var(--space-12);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-neutral-light);
+    background: var(--color-bg-elevated);
+    color: var(--color-text-primary);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.component-browse-filter.active {
+    border-color: var(--color-brand-secondary);
+    background: var(--color-brand-primary);
+    color: var(--color-text-inverse);
+}
+
+.component-add-btn {
+    min-height: 44px;
+    min-width: 44px;
+    flex-shrink: 0;
+}
+
+.component-state-text {
+    color: var(--color-text-muted);
+}
+
+.component-list-item--stacked {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-12);
+}
+
+.component-usage-limits {
+    display: contents;
+}
+
+.component-field-label,
+.component-usage-limits .component-field-label {
+    display: block;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-transform: none;
+    letter-spacing: normal;
+    align-self: end;
+}
+
+.component-usage-limits .component-field-label {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.component-usage-input {
+    grid-column: 1;
+    grid-row: 2;
+    width: 100%;
+    height: 44px;
+    min-height: 44px;
+    padding: var(--space-8) var(--space-12);
+    font-size: 12px;
+    line-height: 16px;
+    box-sizing: border-box;
+}
+
+.component-list-item-controls {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 72px 44px;
+    grid-template-rows: auto 44px;
+    column-gap: var(--space-8);
+    row-gap: var(--space-4);
+    align-items: center;
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-neutral-light);
+}
+
+.component-qty-group {
+    display: contents;
+}
+
+.component-qty-group .component-field-label {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.component-qty-input-row {
+    display: contents;
+}
+
+.component-list-item-controls .qty-input {
+    grid-column: 2;
+    grid-row: 2;
+    width: 72px;
+    height: 44px;
+    min-height: 44px;
+    padding: var(--space-8) var(--space-12);
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.component-list-item-controls .component-remove-btn {
+    grid-column: 3;
+    grid-row: 2;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Search results list */
+.component-search-results {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--color-neutral-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.component-result-item,
+.component-list-item {
+    display: flex;
+    gap: var(--space-12);
+    padding: var(--space-12);
+}
+
+.component-result-item {
+    flex-direction: column;
+    align-items: stretch;
+    background: var(--color-bg-elevated);
+    border-bottom: 1px solid var(--color-neutral-light);
+}
+
+.component-result-item:last-child {
+    border-bottom: none;
+}
+
+.component-result-item.is-added {
+    opacity: 0.5;
+}
+
+.component-result-item .component-add-btn {
+    align-self: flex-end;
+    width: auto;
+    max-width: none;
+}
+
+/* Component card content (shared by results and added list) */
+.component-item-main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    flex: 1;
+    min-width: 0;
+}
+
+.component-item-heading {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    min-width: 0;
+}
+
+.component-item-title-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-12);
+    min-width: 0;
+}
+
+.component-item-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+}
+
+.component-item-name {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    color: var(--color-text-primary);
+    overflow-wrap: anywhere;
+}
+
+.component-item-type,
+.qty-label {
+    color: var(--color-text-muted);
+}
+
+.component-item-price {
+    flex: 0 0 auto;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    color: var(--color-accent-readable);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Added components list */
+.component-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+.component-list-item {
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-neutral-light);
+    border-radius: var(--radius-md);
+}
+
+.qty-input:disabled {
+    background: var(--color-bg-surface);
+    border-color: var(--color-neutral-light);
+    color: var(--color-text-muted);
+    opacity: 1;
+    cursor: default;
+}
+
+@media (min-width: 641px) {
+    .component-result-item {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .component-result-item .component-add-btn {
+        align-self: center;
+        width: auto;
+        max-width: none;
+    }
+}
+
+/* Warning banner */
+.form-warning {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-8);
+    padding: var(--space-8) var(--space-12);
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-feedback-warning);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    color: var(--color-feedback-warning);
+}
+
+/* Plan price preview */
+.plan-price-preview {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+    padding: var(--space-12) var(--space-16);
+    background: var(--color-bg-surface);
+    border-left-width: 3px;
+    border-radius: var(--radius-md);
+}
+
+.plan-price-preview-title {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.plan-price-preview-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.plan-price-preview-section + .plan-price-preview-section {
+    padding-top: var(--space-12);
+    border-top: 1px solid var(--color-neutral-light);
+}
+
+.plan-price-period {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-accent-readable);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-4);
+}
+
+.plan-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-16);
+}
+
+.plan-price-row--total {
+    margin-top: var(--space-4);
+    padding-top: var(--space-8);
+    border-top: 1px dashed var(--color-neutral-light);
+}
+
+.plan-price-label {
+    font-size: 13px;
+    color: var(--color-text-muted);
+}
+
+.plan-price-row--total .plan-price-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.plan-price-value {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+.plan-price-base {
+    color: var(--color-text-muted);
+    text-decoration: line-through;
+}
+
+.plan-price-discount {
+    color: var(--color-discount);
+    font-weight: 600;
+}
+
+.plan-price-total {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-accent-readable);
+}
+
+.label-with-tooltip {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.form-field-error {
+    margin: var(--space-4) 0 0;
+    font-size: 0.875rem;
+    color: var(--color-feedback-error);
+}
